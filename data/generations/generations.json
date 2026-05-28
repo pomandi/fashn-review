@@ -1416,7 +1416,7 @@
     {
       "id": "d5c4857f-2d54-4abe-9102-b609542b92b3",
       "created_at": "2026-03-26T20:03:18.528219",
-      "status": "pending",
+      "status": "rejected",
       "source": {
         "type": "fabric",
         "id": "V2515",
@@ -1439,11 +1439,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2515_slim-3pc_20260326_200437.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
-        "rejection_reason": null,
+        "approved": false,
+        "notes": "",
         "rating": null,
-        "notes": null
+        "rejection_reason": "Quality not acceptable",
+        "reviewed_at": "2026-05-28T13:22:16.489888"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1455,7 +1455,7 @@
     {
       "id": "1452d4fd-0476-43d5-afd2-cdd08e0ca640",
       "created_at": "2026-03-26T20:04:39.248009",
-      "status": "pending",
+      "status": "rejected",
       "source": {
         "type": "fabric",
         "id": "V2565",
@@ -1478,11 +1478,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2565_slim-3pc_20260326_200605.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
-        "rejection_reason": null,
+        "approved": false,
+        "notes": "",
         "rating": null,
-        "notes": null
+        "rejection_reason": "Quality not acceptable",
+        "reviewed_at": "2026-05-28T13:22:22.986218"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1494,7 +1494,7 @@
     {
       "id": "6df05c54-8508-4a62-84ae-0881f4bbdbd9",
       "created_at": "2026-03-26T20:06:07.504677",
-      "status": "pending",
+      "status": "rejected",
       "source": {
         "type": "fabric",
         "id": "V2528",
@@ -1517,11 +1517,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528_slim-3pc_20260326_200738.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
-        "rejection_reason": null,
+        "approved": false,
+        "notes": "",
         "rating": null,
-        "notes": null
+        "rejection_reason": "Quality not acceptable",
+        "reviewed_at": "2026-05-28T13:22:28.659517"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1779,7 +1779,7 @@
     {
       "id": "19a2c55d-3552-4d48-8b59-b600e8dda1c7",
       "created_at": "2026-03-27T08:30:02.824942",
-      "status": "pending",
+      "status": "approved",
       "source": {
         "type": "fabric",
         "id": "V2519",
@@ -1805,11 +1805,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2519_imagen_slim-2pc_20260327_083008.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
+        "approved": true,
+        "notes": "",
+        "rating": 5,
         "rejection_reason": null,
-        "rating": null,
-        "notes": null
+        "reviewed_at": "2026-05-28T13:21:34.392743"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1863,7 +1863,7 @@
     {
       "id": "85ef8f3d-733c-4e8f-804a-7dc2f9b47763",
       "created_at": "2026-03-27T09:18:48.634806",
-      "status": "pending",
+      "status": "approved",
       "source": {
         "type": "fabric",
         "id": "V2519",
@@ -1889,11 +1889,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2519_imagen_slim-2pc_20260327_091854.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
+        "approved": true,
+        "notes": "",
+        "rating": 5,
         "rejection_reason": null,
-        "rating": null,
-        "notes": null
+        "reviewed_at": "2026-05-28T13:20:06.876964"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1947,7 +1947,7 @@
     {
       "id": "368e1373-a0f3-4fb7-92cc-7a618d542e9d",
       "created_at": "2026-03-27T09:28:46.527786",
-      "status": "pending",
+      "status": "rejected",
       "source": {
         "type": "fabric",
         "id": "V2535",
@@ -1973,11 +1973,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2535_imagen_slim-3pc_20260327_092851.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
-        "rejection_reason": null,
+        "approved": false,
+        "notes": "",
         "rating": null,
-        "notes": null
+        "rejection_reason": "Garment not visible properly",
+        "reviewed_at": "2026-05-28T13:19:50.050940"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2031,7 +2031,7 @@
     {
       "id": "8507732e-5fa5-4e9b-9435-a09c68fed752",
       "created_at": "2026-05-09T08:56:55.727181",
-      "status": "pending",
+      "status": "approved",
       "source": {
         "type": "product",
         "id": "UHJvZHVjdDoxNDA1",
@@ -2056,11 +2056,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-linnen-pak_milan-street_20260509_085754.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
+        "approved": true,
+        "notes": "",
+        "rating": 5,
         "rejection_reason": null,
-        "rating": null,
-        "notes": null
+        "reviewed_at": "2026-05-28T13:19:29.610554"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2072,7 +2072,7 @@
     {
       "id": "6723499b-d6c5-4f50-95b8-3f54728bc5c7",
       "created_at": "2026-05-09T08:58:00.682808",
-      "status": "pending",
+      "status": "approved",
       "source": {
         "type": "product",
         "id": "UHJvZHVjdDoxMzkx",
@@ -2097,11 +2097,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_all-black-suit-big-sizes_wedding-groom_20260509_085855.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
+        "approved": true,
+        "notes": "",
+        "rating": 5,
         "rejection_reason": null,
-        "rating": null,
-        "notes": null
+        "reviewed_at": "2026-05-28T13:19:23.260052"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2236,7 +2236,7 @@
     {
       "id": "980e161c-53fc-48e2-a60f-259c1093cf9f",
       "created_at": "2026-05-09T09:02:14.461796",
-      "status": "pending",
+      "status": "approved",
       "source": {
         "type": "product",
         "id": "UHJvZHVjdDo3MTc=",
@@ -2261,11 +2261,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauwe-smoking-2e85cff9_rooftop-sunset_20260509_090307.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
+        "approved": true,
+        "notes": "",
+        "rating": 5,
         "rejection_reason": null,
-        "rating": null,
-        "notes": null
+        "reviewed_at": "2026-05-28T13:18:54.406963"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2277,7 +2277,7 @@
     {
       "id": "2c9375b9-e8fb-4fd1-82a2-fa96922522d8",
       "created_at": "2026-05-09T09:03:13.998260",
-      "status": "pending",
+      "status": "rejected",
       "source": {
         "type": "product",
         "id": "UHJvZHVjdDoxNDAx",
@@ -2302,11 +2302,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-grijs-pak_autumn-city_20260509_090410.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
-        "rejection_reason": null,
+        "approved": false,
+        "notes": "",
         "rating": null,
-        "notes": null
+        "rejection_reason": "Garment does not match original",
+        "reviewed_at": "2026-05-28T13:18:48.327414"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2359,7 +2359,7 @@
     {
       "id": "09ecb25b-e056-4a09-bc53-c9fd73cc8f85",
       "created_at": "2026-05-09T09:05:17.739919",
-      "status": "pending",
+      "status": "rejected",
       "source": {
         "type": "product",
         "id": "UHJvZHVjdDoxNDAw",
@@ -2384,11 +2384,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-geruit-trouwkostuum_coastal-summer_20260509_090615.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
-        "rejection_reason": null,
+        "approved": false,
+        "notes": "",
         "rating": null,
-        "notes": null
+        "rejection_reason": "Quality not acceptable",
+        "reviewed_at": "2026-05-28T13:17:58.153065"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2400,7 +2400,7 @@
     {
       "id": "c205945f-c6a7-40a9-9aea-2683e7a459c0",
       "created_at": "2026-05-09T09:06:21.695126",
-      "status": "pending",
+      "status": "approved",
       "source": {
         "type": "product",
         "id": "UHJvZHVjdDoxNDEz",
@@ -2425,11 +2425,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauw-linnen-pak-heren_classic-studio_20260509_090710.png"
       },
       "feedback": {
-        "reviewed_at": null,
-        "approved": null,
+        "approved": true,
+        "notes": "",
+        "rating": 5,
         "rejection_reason": null,
-        "rating": null,
-        "notes": null
+        "reviewed_at": "2026-05-28T13:25:20.170371"
       },
       "regeneration": {
         "is_regeneration": false,

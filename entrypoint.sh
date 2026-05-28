@@ -20,8 +20,8 @@ fi
 
 exec gunicorn \
   --bind 0.0.0.0:5000 \
-  --workers 2 \
-  --threads 4 \
+  --workers 1 \
+  --threads 8 \
   --timeout 120 \
   --access-logfile - \
   --error-logfile - \

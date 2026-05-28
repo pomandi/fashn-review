@@ -45,11 +45,15 @@ class GenerationTracker:
         }
 
     def _save_data(self):
-        """Save generations to JSON file"""
+        """Save generations to JSON file atomically (write temp, then rename)."""
         self.data['last_updated'] = datetime.now().isoformat()
         self._update_statistics()
-        with open(self.generations_file, 'w', encoding='utf-8') as f:
+        tmp = self.generations_file + '.tmp'
+        with open(tmp, 'w', encoding='utf-8') as f:
             json.dump(self.data, f, indent=2, ensure_ascii=False)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, self.generations_file)
 
     def _update_statistics(self):
         """Update statistics based on current generations"""
@@ -148,6 +152,7 @@ class GenerationTracker:
         notes: str = None
     ):
         """Approve a generation"""
+        self.reload()
         for gen in self.data['generations']:
             if gen['id'] == generation_id:
                 gen['status'] = 'approved'
@@ -166,6 +171,7 @@ class GenerationTracker:
         notes: str = None
     ):
         """Reject a generation with reason"""
+        self.reload()
         for gen in self.data['generations']:
             if gen['id'] == generation_id:
                 gen['status'] = 'rejected'
