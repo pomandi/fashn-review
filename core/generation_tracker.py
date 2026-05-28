@@ -41,38 +41,30 @@ def _r2_client_or_none():
 
 
 def _hydrate_from_r2(local_path: str):
-    """If R2 has a newer state file than local seed, pull it down."""
+    """R2 is authoritative — if a state file exists there, always use it.
+    The local seed is only a bootstrap for the very first deploy when R2 is empty."""
     cli = _r2_client_or_none()
     if cli is None:
         return
     client, bucket = cli
     try:
-        head = client.head_object(Bucket=bucket, Key=_R2_STATE_KEY)
-        remote_mtime = head["LastModified"].timestamp()
-    except Exception:
-        # No remote yet — nothing to hydrate. First save will create it.
-        print("[tracker] no remote state in R2 yet")
-        return
-
-    local_mtime = os.path.getmtime(local_path) if os.path.exists(local_path) else 0
-    if remote_mtime <= local_mtime:
-        print(f"[tracker] R2 state not newer ({remote_mtime} <= {local_mtime}), keeping local")
+        obj = client.get_object(Bucket=bucket, Key=_R2_STATE_KEY)
+        body = obj["Body"].read()
+        json.loads(body)  # validate
+    except Exception as e:
+        # No remote yet (or fetch failed) — keep the seed.
+        print(f"[tracker] R2 state not available, using seed: {e}")
         return
 
     try:
-        obj = client.get_object(Bucket=bucket, Key=_R2_STATE_KEY)
-        body = obj["Body"].read()
-        # Validate JSON before writing
-        json.loads(body)
         os.makedirs(os.path.dirname(local_path), exist_ok=True)
         tmp = local_path + ".r2-hydrate"
         with open(tmp, "wb") as f:
             f.write(body)
         os.replace(tmp, local_path)
-        os.utime(local_path, (remote_mtime, remote_mtime))
-        print(f"[tracker] hydrated {len(body)} bytes from R2")
+        print(f"[tracker] hydrated {len(body)} bytes from R2 (authoritative)")
     except Exception as e:
-        print(f"[tracker] hydrate failed: {e}")
+        print(f"[tracker] hydrate write failed: {e}")
 
 
 def _push_to_r2(local_path: str):
