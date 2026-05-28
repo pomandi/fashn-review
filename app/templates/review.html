@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASHN Image Review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-dark {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .swipe-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .swipe-left {
+            transform: translateX(-150%) rotate(-15deg);
+            opacity: 0;
+        }
+
+        .swipe-right {
+            transform: translateX(150%) rotate(15deg);
+            opacity: 0;
+        }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-approve:hover {
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.6);
+            transform: scale(1.05);
+        }
+
+        .btn-reject {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-reject:hover {
+            box-shadow: 0 6px 25px rgba(239, 68, 68, 0.6);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .approve-overlay {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+        }
+
+        .reject-overlay {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .image-container img {
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.02);
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .thumbnail-strip {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.3) transparent;
+        }
+
+        .thumbnail-strip::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .thumbnail-strip::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .thumbnail-strip::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover {
+            opacity: 0.8;
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .keyboard-hint {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            padding: 0 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        .modal-backdrop {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Header -->
+    <header class="glass-card border-t-0 border-l-0 border-r-0 px-6 py-4 sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">FASHN Review</h1>
+                    <p class="text-gray-400 text-sm">AI Image Approval System</p>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="flex items-center gap-4">
+                <div class="stat-card rounded-xl px-4 py-2 text-center">
+                    <div id="pending-count" class="text-2xl font-bold text-amber-400">0</div>
+                    <div class="text-xs text-gray-400">Pending</div>
+                </div>
+                <div class="stat-card rounded-xl px-4 py-2 text-center">
+                    <div id="approved-count" class="text-2xl font-bold text-emerald-400">0</div>
+                    <div class="text-xs text-gray-400">Approved</div>
+                </div>
+                <div class="stat-card rounded-xl px-4 py-2 text-center">
+                    <div id="rejected-count" class="text-2xl font-bold text-red-400">0</div>
+                    <div class="text-xs text-gray-400">Rejected</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Left Panel - Thumbnails -->
+            <div class="lg:col-span-1 order-2 lg:order-1">
+                <div class="glass-card rounded-2xl p-4">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                        Queue (<span id="queue-count">0</span>)
+                    </h3>
+
+                    <div id="thumbnail-list" class="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+                        <!-- Thumbnails will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Keyboard Shortcuts -->
+                <div class="glass-card rounded-2xl p-4 mt-4">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-3">Keyboard Shortcuts</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Approve</span>
+                            <div class="flex gap-1">
+                                <span class="keyboard-hint">A</span>
+                                <span class="keyboard-hint">-></span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Reject</span>
+                            <div class="flex gap-1">
+                                <span class="keyboard-hint">R</span>
+                                <span class="keyboard-hint"><-</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Next/Previous</span>
+                            <div class="flex gap-1">
+                                <span class="keyboard-hint">J</span>
+                                <span class="keyboard-hint">K</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Regenerate</span>
+                            <span class="keyboard-hint">G</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Panel - Main Image -->
+            <div class="lg:col-span-2 order-1 lg:order-2">
+                <div id="card-container" class="relative">
+                    <!-- Empty State -->
+                    <div id="empty-state" class="glass-card rounded-2xl p-12 text-center hidden">
+                        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 flex items-center justify-center">
+                            <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">All Done!</h2>
+                        <p class="text-gray-400 mb-6">No pending images to review</p>
+                        <button onclick="loadPending()" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition">
+                            Refresh Queue
+                        </button>
+                    </div>
+
+                    <!-- Image Card -->
+                    <div id="image-card" class="swipe-card glass-card rounded-2xl overflow-hidden shadow-2xl">
+                        <!-- Overlays -->
+                        <div id="approve-overlay" class="approve-overlay absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-300 pointer-events-none">
+                            <div class="text-center">
+                                <svg class="w-24 h-24 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-3xl font-bold">APPROVED</span>
+                            </div>
+                        </div>
+                        <div id="reject-overlay" class="reject-overlay absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-300 pointer-events-none">
+                            <div class="text-center">
+                                <svg class="w-24 h-24 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                <span class="text-3xl font-bold">REJECTED</span>
+                            </div>
+                        </div>
+
+                        <!-- Images: Original (left) + Generated (right) -->
+                        <div class="image-container bg-gray-900 grid grid-cols-2 gap-1">
+                            <div class="relative aspect-[4/5] bg-black">
+                                <img id="source-image" src="" alt="Original Product" class="w-full h-full object-contain bg-white">
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-blue-600/90 text-xs font-bold uppercase tracking-wide">Orijinal</span>
+                                <a id="source-image-link" href="#" target="_blank" class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-black/70 hover:bg-black/90 text-xs">↗ Tam boy</a>
+                            </div>
+                            <div class="relative aspect-[4/5] bg-black">
+                                <img id="current-image" src="" alt="Generated Image" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-emerald-600/90 text-xs font-bold uppercase tracking-wide">AI Üretildi</span>
+                                <a id="current-image-link" href="#" target="_blank" class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-black/70 hover:bg-black/90 text-xs">↗ Tam boy</a>
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <!-- Progress indicator (moved below images) -->
+                        <div class="px-6 pt-4 pb-2">
+                            <div class="flex items-center justify-between mb-2">
+                                <span id="image-index" class="px-3 py-1 rounded-full bg-gray-700 text-sm font-medium">1 / 10</span>
+                                <span id="model-badge" class="px-3 py-1 rounded-full bg-purple-500/80 text-sm font-medium">Model: dutch-blond</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div id="progress-fill" class="progress-fill" style="width: 10%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Info Panel -->
+                        <div class="p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 id="source-name" class="text-2xl font-bold mb-1">Collection Name</h3>
+                                    <p id="source-type" class="text-gray-400">Collection</p>
+                                </div>
+                                <span id="prompt-id" class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-medium">v3_production</span>
+                            </div>
+
+                            <!-- Saleor Status -->
+                            <div id="saleor-status" class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-emerald-300">Auto-sync enabled</p>
+                                        <p id="saleor-id" class="text-emerald-400/60 text-xs font-mono">Saleor ID: Q29sbGVjdGlvbjox</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="flex items-center gap-4">
+                                <button onclick="rejectCurrent()" class="btn-reject flex-1 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                    Reject
+                                </button>
+
+                                <button onclick="regenerateCurrent()" class="btn-secondary w-14 h-14 rounded-xl flex items-center justify-center transition-all">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                    </svg>
+                                </button>
+
+                                <button onclick="approveCurrent()" class="btn-approve flex-1 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Approve
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rejection Modal -->
+    <div id="reject-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center z-50 hidden">
+        <div class="glass-card rounded-2xl p-6 max-w-md w-full mx-4 animate-slide-in">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold">Rejection Reason</h3>
+                    <p class="text-gray-400 text-sm">Select why this image was rejected</p>
+                </div>
+            </div>
+
+            <div class="space-y-2 mb-6">
+                <button onclick="submitRejection('Garment does not match original')" class="w-full px-4 py-3 glass-card-dark rounded-xl hover:bg-white/10 text-left transition flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-pink-400"></span>
+                    Garment does not match original
+                </button>
+                <button onclick="submitRejection('Quality not acceptable')" class="w-full px-4 py-3 glass-card-dark rounded-xl hover:bg-white/10 text-left transition flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                    Quality not acceptable
+                </button>
+                <button onclick="submitRejection('Wrong pose/angle')" class="w-full px-4 py-3 glass-card-dark rounded-xl hover:bg-white/10 text-left transition flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+                    Wrong pose/angle
+                </button>
+                <button onclick="submitRejection('Garment not visible properly')" class="w-full px-4 py-3 glass-card-dark rounded-xl hover:bg-white/10 text-left transition flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                    Garment not visible properly
+                </button>
+                <button onclick="submitRejection('Background issues')" class="w-full px-4 py-3 glass-card-dark rounded-xl hover:bg-white/10 text-left transition flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                    Background issues
+                </button>
+                <button onclick="submitRejection('Face/model issues')" class="w-full px-4 py-3 glass-card-dark rounded-xl hover:bg-white/10 text-left transition flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                    Face/model issues
+                </button>
+                <div class="relative">
+                    <input type="text" id="custom-reason" placeholder="Other reason..." class="w-full px-4 py-3 glass-card-dark rounded-xl border border-transparent focus:border-blue-500 focus:outline-none transition">
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="closeRejectModal()" class="flex-1 px-4 py-3 btn-secondary rounded-xl font-medium transition">
+                    Cancel
+                </button>
+                <button onclick="submitCustomRejection()" class="flex-1 px-4 py-3 btn-reject rounded-xl font-medium transition">
+                    Confirm Reject
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 glass-card rounded-xl px-6 py-4 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div class="flex items-center gap-3">
+            <div id="toast-icon" class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <div>
+                <p id="toast-title" class="font-semibold">Success</p>
+                <p id="toast-message" class="text-sm text-gray-400">Image approved and synced to Saleor</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let pendingGenerations = [];
+        let currentIndex = 0;
+        let currentGeneration = null;
+
+        // Load pending generations
+        async function loadPending() {
+            try {
+                const response = await fetch('/api/pending');
+                const data = await response.json();
+                pendingGenerations = data.generations;
+                currentIndex = 0;
+                updateStats();
+                updateThumbnails();
+                showCurrentImage();
+            } catch (error) {
+                console.error('Error loading pending:', error);
+                showToast('Error', 'Failed to load images', 'error');
+            }
+        }
+
+        // Update statistics
+        async function updateStats() {
+            try {
+                const response = await fetch('/api/statistics');
+                const data = await response.json();
+                document.getElementById('pending-count').textContent = data.generations.total_pending;
+                document.getElementById('approved-count').textContent = data.generations.total_approved;
+                document.getElementById('rejected-count').textContent = data.generations.total_rejected;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Update thumbnail list
+        function updateThumbnails() {
+            const container = document.getElementById('thumbnail-list');
+            document.getElementById('queue-count').textContent = pendingGenerations.length;
+
+            if (pendingGenerations.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 text-sm text-center py-4">No images in queue</p>';
+                return;
+            }
+
+            container.innerHTML = pendingGenerations.map((gen, idx) => `
+                <div onclick="goToImage(${idx})" class="flex items-center gap-3 p-2 rounded-xl cursor-pointer transition ${idx === currentIndex ? 'bg-blue-500/20 border border-blue-500/30' : 'hover:bg-white/5'}">
+                    <img src="${gen.output.s3_url || gen.output.fashn_url}" class="w-12 h-12 rounded-lg object-cover">
+                    <div class="flex-1 min-w-0">
+                        <p class="font-medium text-sm truncate">${gen.source.name}</p>
+                        <p class="text-xs text-gray-500">${gen.model_used || 'unknown'}</p>
+                    </div>
+                    ${idx === currentIndex ? '<div class="w-2 h-2 rounded-full bg-blue-400"></div>' : ''}
+                </div>
+            `).join('');
+        }
+
+        // Go to specific image
+        function goToImage(idx) {
+            currentIndex = idx;
+            showCurrentImage();
+            updateThumbnails();
+        }
+
+        // Next/Previous
+        function nextImage() {
+            if (currentIndex < pendingGenerations.length - 1) {
+                currentIndex++;
+                showCurrentImage();
+                updateThumbnails();
+            }
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showCurrentImage();
+                updateThumbnails();
+            }
+        }
+
+        // Show current image
+        function showCurrentImage() {
+            const card = document.getElementById('image-card');
+            const emptyState = document.getElementById('empty-state');
+
+            if (pendingGenerations.length === 0 || currentIndex >= pendingGenerations.length) {
+                card.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            card.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            currentGeneration = pendingGenerations[currentIndex];
+
+            const generatedUrl = currentGeneration.output.s3_url || currentGeneration.output.fashn_url;
+            const sourceUrl = currentGeneration.source.image_url;
+            document.getElementById('current-image').src = generatedUrl;
+            document.getElementById('current-image-link').href = generatedUrl || '#';
+            document.getElementById('source-image').src = sourceUrl || '';
+            document.getElementById('source-image-link').href = sourceUrl || '#';
+            document.getElementById('source-name').textContent = currentGeneration.source.name;
+            document.getElementById('source-type').textContent = currentGeneration.source.type.charAt(0).toUpperCase() + currentGeneration.source.type.slice(1);
+            document.getElementById('prompt-id').textContent = currentGeneration.prompt.id;
+            document.getElementById('image-index').textContent = `${currentIndex + 1} / ${pendingGenerations.length}`;
+            document.getElementById('model-badge').textContent = `Model: ${currentGeneration.model_used || 'unknown'}`;
+
+            // Progress bar
+            const progress = ((currentIndex + 1) / pendingGenerations.length) * 100;
+            document.getElementById('progress-fill').style.width = `${progress}%`;
+
+            // Saleor status
+            const saleorStatus = document.getElementById('saleor-status');
+            const saleorId = currentGeneration.source.saleor_id;
+
+            if (saleorId) {
+                saleorStatus.className = 'mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30';
+                saleorStatus.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-medium text-emerald-300">Auto-sync enabled</p>
+                            <p class="text-emerald-400/60 text-xs font-mono">ID: ${saleorId.substring(0, 20)}...</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                saleorStatus.className = 'mb-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30';
+                saleorStatus.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-medium text-amber-300">Manual sync required</p>
+                            <p class="text-amber-400/60 text-xs">No Saleor ID - won't auto-update</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Reset card position
+            card.classList.remove('swipe-left', 'swipe-right');
+        }
+
+        // Approve
+        async function approveCurrent() {
+            if (!currentGeneration) return;
+
+            const card = document.getElementById('image-card');
+            const overlay = document.getElementById('approve-overlay');
+
+            overlay.style.opacity = '1';
+            card.classList.add('swipe-right');
+
+            try {
+                const response = await fetch(`/api/approve/${currentGeneration.id}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ rating: 5 })
+                });
+                const data = await response.json();
+
+                if (data.saleor_updated) {
+                    showToast('Approved & Synced', 'Image updated in Saleor', 'success');
+                } else if (data.saleor_error) {
+                    showToast('Approved', 'Saleor sync failed: ' + data.saleor_error, 'warning');
+                } else {
+                    showToast('Approved', 'Image approved successfully', 'success');
+                }
+            } catch (error) {
+                console.error('Error approving:', error);
+                showToast('Error', 'Failed to approve image', 'error');
+            }
+
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                pendingGenerations.splice(currentIndex, 1);
+                if (currentIndex >= pendingGenerations.length) currentIndex = Math.max(0, pendingGenerations.length - 1);
+                showCurrentImage();
+                updateThumbnails();
+                updateStats();
+            }, 400);
+        }
+
+        // Reject
+        function rejectCurrent() {
+            if (!currentGeneration) return;
+            document.getElementById('reject-modal').classList.remove('hidden');
+        }
+
+        function closeRejectModal() {
+            document.getElementById('reject-modal').classList.add('hidden');
+            document.getElementById('custom-reason').value = '';
+        }
+
+        async function submitRejection(reason) {
+            closeRejectModal();
+            await performRejection(reason);
+        }
+
+        async function submitCustomRejection() {
+            const reason = document.getElementById('custom-reason').value || 'Quality not acceptable';
+            closeRejectModal();
+            await performRejection(reason);
+        }
+
+        async function performRejection(reason) {
+            const card = document.getElementById('image-card');
+            const overlay = document.getElementById('reject-overlay');
+
+            overlay.style.opacity = '1';
+            card.classList.add('swipe-left');
+
+            try {
+                await fetch(`/api/reject/${currentGeneration.id}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reason })
+                });
+                showToast('Rejected', reason, 'error');
+            } catch (error) {
+                console.error('Error rejecting:', error);
+            }
+
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                pendingGenerations.splice(currentIndex, 1);
+                if (currentIndex >= pendingGenerations.length) currentIndex = Math.max(0, pendingGenerations.length - 1);
+                showCurrentImage();
+                updateThumbnails();
+                updateStats();
+            }, 400);
+        }
+
+        // Regenerate
+        async function regenerateCurrent() {
+            if (!currentGeneration) return;
+
+            try {
+                await fetch(`/api/regenerate/${currentGeneration.id}`, { method: 'POST' });
+                showToast('Regenerating', 'Image queued for regeneration', 'info');
+                pendingGenerations.splice(currentIndex, 1);
+                if (currentIndex >= pendingGenerations.length) currentIndex = Math.max(0, pendingGenerations.length - 1);
+                showCurrentImage();
+                updateThumbnails();
+                updateStats();
+            } catch (error) {
+                console.error('Error regenerating:', error);
+            }
+        }
+
+        // Toast notification
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-message').textContent = message;
+
+            // Set icon based on type
+            const icons = {
+                success: '<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>',
+                error: '<svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>',
+                warning: '<svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>',
+                info: '<svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>'
+            };
+
+            const colors = {
+                success: 'bg-emerald-500/20',
+                error: 'bg-red-500/20',
+                warning: 'bg-amber-500/20',
+                info: 'bg-blue-500/20'
+            };
+
+            icon.className = `w-8 h-8 rounded-full ${colors[type]} flex items-center justify-center`;
+            icon.innerHTML = icons[type];
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('reject-modal').classList.contains('hidden')) {
+                switch(e.key) {
+                    case 'ArrowRight':
+                    case 'a':
+                    case 'A':
+                        approveCurrent();
+                        break;
+                    case 'ArrowLeft':
+                    case 'r':
+                    case 'R':
+                        rejectCurrent();
+                        break;
+                    case ' ':
+                        e.preventDefault();
+                        nextImage();
+                        break;
+                    case 'j':
+                    case 'J':
+                        nextImage();
+                        break;
+                    case 'k':
+                    case 'K':
+                        prevImage();
+                        break;
+                    case 'g':
+                    case 'G':
+                        regenerateCurrent();
+                        break;
+                }
+            } else {
+                if (e.key === 'Escape') {
+                    closeRejectModal();
+                }
+            }
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('image-card').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('image-card').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const diff = touchEndX - touchStartX;
+            if (diff > 100) {
+                approveCurrent();
+            } else if (diff < -100) {
+                rejectCurrent();
+            }
+        }
+
+        // Initialize
+        loadPending();
+    </script>
+</body>
+</html>

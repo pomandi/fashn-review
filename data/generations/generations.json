@@ -1,0 +1,2442 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-05-09T09:07:14.568922",
+  "statistics": {
+    "total_generations": 60,
+    "total_approved": 18,
+    "total_rejected": 3,
+    "total_pending": 28,
+    "credits_used": 60,
+    "estimated_cost_usd": 4.5
+  },
+  "generations": [
+    {
+      "id": "531365f2-3b97-4894-a22b-724cb376a9a1",
+      "created_at": "2025-12-11T07:46:29.292445",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "tuxedo",
+        "name": "Tuxedo",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-09-04_at_09.17.59_616cab49_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjozNw==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "32a72952-a828-4a52-abd6-a76d85b83e0d",
+      "created_at": "2025-12-11T07:56:30.738154",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "All-Suits",
+        "name": "All suits",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/IMG_0383_da272063_thumbnail_4096.JPG",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/74f1ef50-5cc0-4cf7-bafa-d2d424eb3618/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/All-Suits_20251211_075804.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T08:13:20.389933",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T07:58:11.173847"
+    },
+    {
+      "id": "713d0904-9007-4efc-9b0a-ab0f4a378397",
+      "created_at": "2025-12-11T07:58:13.175823",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "beige-suit",
+        "name": "Beige suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/Beige_trouwpak_5_a70a4b44_thumbnail_4096.jpeg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "mark",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/94b08efd-f8d7-45c2-97d1-7ca4028c53ce/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/beige-suit_20251211_075957.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T17:13:44.201895",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:00:03.535579"
+    },
+    {
+      "id": "bbc9a8d3-3ef0-48be-b729-a77485d45568",
+      "created_at": "2025-12-11T08:00:05.536590",
+      "status": "rejected",
+      "source": {
+        "type": "collection",
+        "id": "belts",
+        "name": "Belts",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/Background_1_65e2bcf6_thumbnail_4096.png",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/6ce472cd-3d24-47e1-b9e6-c5d372479805/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/belts_20251211_080139.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T17:13:58.747360",
+        "approved": false,
+        "rejection_reason": "Quality not acceptable",
+        "rating": null,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:01:47.310287"
+    },
+    {
+      "id": "d736c781-2342-4527-a21d-996ef6b89365",
+      "created_at": "2025-12-11T08:01:49.311720",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "black-suit",
+        "name": "Black Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.26.54_59449144_thumbnail_4096.jpeg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/a1996098-7097-475a-b540-4266bb8ab2fa/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/black-suit_20251211_080316.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T17:14:05.222370",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:03:29.108715"
+    },
+    {
+      "id": "98b1e6dc-8d11-4817-b68c-b52cd9000155",
+      "created_at": "2025-12-11T08:03:31.109766",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "blue-suit",
+        "name": "Blue Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.27.25_9dce9985_thumbnail_4096.jpeg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "mark",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/1e075d30-decc-44e3-8eef-4acc54a8cf5b/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/blue-suit_20251211_080512.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T17:14:12.430652",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:05:18.125472"
+    },
+    {
+      "id": "33f4cacc-1d6c-4f2c-929a-a1d2a71a59fe",
+      "created_at": "2025-12-11T08:05:20.129735",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "burgundy-suit",
+        "name": "Burgundy Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.26.52_e35422ce_thumbnail_4096.jpeg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "d77ba12d-5b7e-47dd-9e67-9216ca867631",
+      "created_at": "2025-12-11T08:07:51.751316",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "tuxedo",
+        "name": "Tuxedo",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-09-04_at_09.17.59_616cab49_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjozNw==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "drick",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/730b7946-a7de-460b-99ee-417b438e33f6/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/tuxedo_20251211_080918.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T08:18:31.463803",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:09:25.263109"
+    },
+    {
+      "id": "e392725f-2652-4c35-aec5-c082319d5817",
+      "created_at": "2025-12-11T08:09:34.332054",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "blue-suit",
+        "name": "Blue Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.27.25_9dce9985_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjozNg==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "drick",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/24cfcf16-a4ea-42c0-afd4-c64fdcae3c7d/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/blue-suit_20251211_081108.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T08:23:05.623630",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:11:19.421680"
+    },
+    {
+      "id": "7e098484-c663-4d65-8eda-e7a6801c7bf3",
+      "created_at": "2025-12-11T08:37:03.551765",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "All-Suits",
+        "name": "All suits",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/IMG_0383_da272063_thumbnail_4096.JPG",
+        "saleor_id": "Q29sbGVjdGlvbjozNQ==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "drick",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/4f2fd40e-b9c7-42ad-8313-efbf1d9746a9/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/All-Suits_20251211_093556.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:33:06.048377",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:38:45.649518"
+    },
+    {
+      "id": "bc4423b0-6165-4c03-b047-6e2022779021",
+      "created_at": "2025-12-11T08:38:47.651130",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "beige-suit",
+        "name": "Beige suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/Beige_trouwpak_5_a70a4b44_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjo0MA==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "f8caa2e6-e5e0-4205-8359-acf19df243f5",
+      "created_at": "2025-12-11T08:39:38.491268",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "All-Suits",
+        "name": "All suits",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/IMG_0383_da272063_thumbnail_4096.JPG",
+        "saleor_id": "Q29sbGVjdGlvbjozNQ==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/2ed34ba2-50ad-44c2-a295-ad244f9fbd22/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/All-Suits_20251211_093609.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:33:02.881917",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:41:59.467026"
+    },
+    {
+      "id": "b9346da1-fe1f-4b2e-bba2-b9c77c7be222",
+      "created_at": "2025-12-11T08:42:01.469959",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "beige-suit",
+        "name": "Beige suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/Beige_trouwpak_5_a70a4b44_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjo0MA==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "drick",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/ffaf4577-eab3-4410-ba6a-25ec9bb37dce/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/beige-suit_20251211_093620.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:32:58.402890",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:43:35.341429"
+    },
+    {
+      "id": "7c9fd0a5-5a09-4847-aaf2-59aa55a3f53c",
+      "created_at": "2025-12-11T08:43:37.342777",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "black-suit",
+        "name": "Black Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.26.54_59449144_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjozOQ==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/2516898b-25cd-4afe-8f0c-f6755007d417/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/black-suit_20251211_093632.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:32:55.263227",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:45:20.262832"
+    },
+    {
+      "id": "2de28747-a987-409c-a73f-26ac267c265e",
+      "created_at": "2025-12-11T08:45:22.264105",
+      "status": "rejected",
+      "source": {
+        "type": "collection",
+        "id": "blue-suit",
+        "name": "Blue Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/blue-suit_20251211_081108_456ed3ef_thumbnail_4096.png",
+        "saleor_id": "Q29sbGVjdGlvbjozNg==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/4bc211a1-e272-41b8-9d8c-a3196295d024/product_to_model_0.png",
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T17:14:19.766355",
+        "approved": false,
+        "rejection_reason": "Quality not acceptable",
+        "rating": null,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:46:50.868386"
+    },
+    {
+      "id": "023408c2-0fff-4195-b2fc-7ac99b744ee9",
+      "created_at": "2025-12-11T08:46:52.871355",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "burgundy-suit",
+        "name": "Burgundy Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.26.52_e35422ce_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjo0MQ==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/4ec531f1-91c1-4de9-be12-a3b69356e5b7/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/burgundy-suit_20251211_093644.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:32:51.696502",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:48:28.642662"
+    },
+    {
+      "id": "240daa1a-114e-4478-a7f3-8f130e052d2b",
+      "created_at": "2025-12-11T08:48:30.644592",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "das",
+        "name": "Tie",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/bej2_4410ffc2_thumbnail_1024_62dd665c_thumbnail_4096.webp",
+        "saleor_id": "Q29sbGVjdGlvbjo2OA==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/3d26e87b-5769-4af2-99ee-f8c199bf2492/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/das_20251211_093654.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:32:49.415856",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:51:10.095000"
+    },
+    {
+      "id": "009e3603-45ba-4530-8d9d-9c7a7a70ff7b",
+      "created_at": "2025-12-11T08:51:12.097879",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "gray-wedding-suit",
+        "name": "Gray Wedding Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.27.05_8fc1e4dc_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjozNA==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/03622f4c-5ba0-42ed-8c04-1419c9de892f/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/gray-wedding-suit_20251211_093706.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:32:44.617551",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:53:01.556909"
+    },
+    {
+      "id": "3f4d9110-c598-4590-af52-d1a50ef40cb2",
+      "created_at": "2025-12-11T08:53:03.559031",
+      "status": "approved",
+      "source": {
+        "type": "collection",
+        "id": "green-suit",
+        "name": "Green Suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/WhatsApp_Image_2021-10-05_at_05.28.03_0d1d3798_thumbnail_4096.jpeg",
+        "saleor_id": "Q29sbGVjdGlvbjozOA==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/1df452ba-c2c1-4e0d-92f8-69f80d9e1c9c/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/green-suit_20251211_093718.png"
+      },
+      "feedback": {
+        "reviewed_at": "2025-12-11T09:32:41.810872",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2025-12-11T08:55:00.974479"
+    },
+    {
+      "id": "4438b255-4500-4100-8d03-ee9a27b4be28",
+      "created_at": "2025-12-11T08:55:02.977309",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "kinderpak",
+        "name": "Kinderpak",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/kinderpak_7739f409_thumbnail_4096.jpg",
+        "saleor_id": "Q29sbGVjdGlvbjoxMDE=",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "9af35f5a-8c8b-4197-b6b1-3455d5b07cfd",
+      "created_at": "2025-12-11T08:55:20.650690",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "men-suit",
+        "name": "Men suit",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/IMG_7540_29b1a15c_thumbnail_4096.jpg",
+        "saleor_id": "Q29sbGVjdGlvbjox",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "59e79703-0200-4e5e-a307-b4fea597155e",
+      "created_at": "2025-12-11T08:55:38.457894",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "shirt",
+        "name": "Shirt",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/whiteoverhemd_2ff77a1c_thumbnail_4096.webp",
+        "saleor_id": "Q29sbGVjdGlvbjo2Nw==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "87968498-19b3-41e0-9125-6bdc017054bd",
+      "created_at": "2025-12-11T08:55:55.465125",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "shoes",
+        "name": "Shoes",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/shoes_94291067_thumbnail_4096.jpg",
+        "saleor_id": "Q29sbGVjdGlvbjoxMDA=",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "d40699d1-0957-44c1-b08a-b3b9ad230b5a",
+      "created_at": "2025-12-11T08:56:12.836446",
+      "status": "generating",
+      "source": {
+        "type": "collection",
+        "id": "tuxedo",
+        "name": "Tuxedo",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/collection-backgrounds/tuxedo_20251211_080918_37ebc43e_thumbnail_4096.png",
+        "saleor_id": "Q29sbGVjdGlvbjozNw==",
+        "channel": "benelux-b2c"
+      },
+      "prompt": {
+        "id": "v3_production",
+        "text": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "92b75f42-80f3-4d95-aa79-c837e6399fc4",
+      "created_at": "2026-03-26T17:17:42.621621",
+      "status": "rejected",
+      "source": {
+        "type": "fabric",
+        "id": "V2501",
+        "name": "Fabric V2501 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2501.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "fabric_slim-2pc",
+        "text": "A fit male model wearing a slim fit two-piece suit, single-breasted two-button jacket with notch lapel, flat front slim tapered trousers with no break, flap pockets, single center vent, professional fashion photography, clean studio background, full body visible, standing confidently, studio-quality lighting, perfect exposure, high-end catalog quality, sharp details"
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "suit_style": "slim-2pc"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2b26-ed6d-7553-a187-3f00813837f1/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_20260326_171827.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T20:02:33.198823",
+        "approved": false,
+        "rejection_reason": "Quality not acceptable",
+        "rating": null,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T17:18:30.003337"
+    },
+    {
+      "id": "7ca90ad5-5dac-4e76-a4da-ac94300ec525",
+      "created_at": "2026-03-26T17:28:21.089121",
+      "status": "failed",
+      "source": {
+        "type": "fabric",
+        "id": "V2501",
+        "name": "Fabric V2501 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2501.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T17:28:26.120000"
+    },
+    {
+      "id": "ce49298c-13e6-4e2a-82b1-2bd81b272954",
+      "created_at": "2026-03-26T17:30:55.692950",
+      "status": "approved",
+      "source": {
+        "type": "fabric",
+        "id": "V2501",
+        "name": "Fabric V2501 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2501.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2b33-162e-7943-8678-6b50c7620010/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_slim-2pc_20260326_173146.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T19:31:48.154444",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T17:31:49.622184"
+    },
+    {
+      "id": "a20d21fa-927e-4462-845d-442179088ae2",
+      "created_at": "2026-03-26T18:41:25.476729",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2501",
+        "name": "Fabric V2501 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2501.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2b73-a20a-7ce1-861a-98ac93dfc97f/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_slim-2pc_20260326_184222.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T18:42:26.251508"
+    },
+    {
+      "id": "21ed1bf1-5f55-415d-b4dc-b207d1a4e009",
+      "created_at": "2026-03-26T19:30:17.171800",
+      "status": "generating",
+      "source": {
+        "type": "fabric",
+        "id": "V2501",
+        "name": "Fabric V2501 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2501.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "d16488ba-0ad6-4a53-b16a-4408ff9a1ebc",
+      "created_at": "2026-03-26T19:30:24.920911",
+      "status": "generating",
+      "source": {
+        "type": "fabric",
+        "id": "V2528",
+        "name": "Fabric V2528 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2528.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": null,
+      "output": {
+        "fashn_url": null,
+        "s3_url": null
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      }
+    },
+    {
+      "id": "9f1f26b9-62e7-4fae-81b3-11a2c9ccbfb0",
+      "created_at": "2026-03-26T19:32:03.821366",
+      "status": "approved",
+      "source": {
+        "type": "fabric",
+        "id": "V2505",
+        "name": "Fabric V2505 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2505.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2ba1-fcc4-7a33-a412-b80ab6ef09ad/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2505_slim-2pc_20260326_193259.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T19:33:10.686558",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": "Auto Saleor test"
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T19:33:02.431483"
+    },
+    {
+      "id": "6ec2e523-a907-450e-aa45-c7afc3bd383d",
+      "created_at": "2026-03-26T19:35:22.620906",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2528",
+        "name": "Fabric V2528 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2528.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2ba5-08ad-79a1-a412-c68e0fa951b4/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528_slim-2pc_20260326_193621.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T19:36:25.568210"
+    },
+    {
+      "id": "8aa6b6cd-ac0a-438a-8a32-9eda493c49a9",
+      "created_at": "2026-03-26T19:37:01.879811",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2529",
+        "name": "Fabric V2529 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2529.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-3pc",
+        "text": "3-stage pipeline: slim-3pc"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "mark",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2ba6-89f8-7033-9b29-e85a18781832/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2529_slim-3pc_20260326_193804.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T19:38:07.486142"
+    },
+    {
+      "id": "a3399e3c-28a5-4727-bb90-da752f4ade77",
+      "created_at": "2026-03-26T19:40:01.964042",
+      "status": "approved",
+      "source": {
+        "type": "fabric",
+        "id": "V2528",
+        "name": "Fabric V2528 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2528.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2ba9-4bd2-7fc0-a10b-53ddc2989c8e/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528_slim-2pc_20260326_194058.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T20:03:54.039395",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T19:41:00.735466"
+    },
+    {
+      "id": "7338cfa0-794e-4cc1-8c81-72553b41fa17",
+      "created_at": "2026-03-26T19:41:56.326838",
+      "status": "approved",
+      "source": {
+        "type": "fabric",
+        "id": "V2528-v2",
+        "name": "Fabric V2528-v2 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2528.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2bab-098e-7ff0-9c4f-b1bf3ae80ddd/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528-v2_slim-2pc_20260326_194304.png"
+      },
+      "feedback": {
+        "reviewed_at": "2026-03-26T20:04:07.302993",
+        "approved": true,
+        "rejection_reason": null,
+        "rating": 5,
+        "notes": ""
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T19:43:07.011619"
+    },
+    {
+      "id": "d5c4857f-2d54-4abe-9102-b609542b92b3",
+      "created_at": "2026-03-26T20:03:18.528219",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2515",
+        "name": "Fabric V2515 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2515.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-3pc",
+        "text": "3-stage pipeline: slim-3pc"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "dutch-blond",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2bbe-99dd-7550-9715-bedd2a029507/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2515_slim-3pc_20260326_200437.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T20:04:38.976583"
+    },
+    {
+      "id": "1452d4fd-0476-43d5-afd2-cdd08e0ca640",
+      "created_at": "2026-03-26T20:04:39.248009",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2565",
+        "name": "Fabric V2565 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2565.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-3pc",
+        "text": "3-stage pipeline: slim-3pc"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "drick",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2bbf-d656-71e3-aa98-5a79c139c060/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2565_slim-3pc_20260326_200605.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T20:06:07.264159"
+    },
+    {
+      "id": "6df05c54-8508-4a62-84ae-0881f4bbdbd9",
+      "created_at": "2026-03-26T20:06:07.504677",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2528",
+        "name": "Fabric V2528 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2528.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-3pc",
+        "text": "3-stage pipeline: slim-3pc"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2bc1-2d86-7771-8b59-fa06c6103ecf/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528_slim-3pc_20260326_200738.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T20:07:40.235198"
+    },
+    {
+      "id": "0349ac89-e620-4295-8b9f-71d22bfb28c1",
+      "created_at": "2026-03-26T20:08:42.207877",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2528-clean",
+        "name": "Fabric V2528-clean (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2528.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "chang",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2bc3-8ad9-7a33-970f-2c78771f8080/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528-clean_slim-2pc_20260326_200951.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-26T20:09:53.367914"
+    },
+    {
+      "id": "2fa4e5cb-2dfd-41d5-868c-bcbba367d7d5",
+      "created_at": "2026-03-27T06:07:11.553143",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2504",
+        "name": "Fabric V2504 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2504.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "pipeline_slim-2pc",
+        "text": "3-stage pipeline: slim-2pc"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "3-stage"
+      },
+      "model_used": "mark",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019d2de7-7ac6-7453-908c-6c429d5990e9/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2504_slim-2pc_20260327_060835.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T06:08:36.941179"
+    },
+    {
+      "id": "dca41bd2-9848-4ff2-b5df-ad027d9c2946",
+      "created_at": "2026-03-27T06:49:35.205106",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2524",
+        "name": "Fabric V2524 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2524.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_flatlay_slim-3pc",
+        "text": "Imagen 3 flatlay: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "flatlay",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2524_imagen_slim-3pc_20260327_064941.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T06:49:42.273149"
+    },
+    {
+      "id": "c5308d54-9dd2-4b3c-bf9e-af44cd62b37f",
+      "created_at": "2026-03-27T06:51:01.158820",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2524",
+        "name": "Fabric V2524 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2524.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_flatlay_slim-3pc",
+        "text": "Imagen 3 flatlay: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "flatlay",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2524_imagen_slim-3pc_20260327_065106.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T06:51:07.711498"
+    },
+    {
+      "id": "4b9b0e02-6369-4fba-b0fa-6581414ec2de",
+      "created_at": "2026-03-27T06:51:36.433516",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2523",
+        "name": "Fabric V2523 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2523.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_flatlay_slim-3pc",
+        "text": "Imagen 3 flatlay: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "flatlay",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2523_imagen_slim-3pc_20260327_065144.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T06:51:46.082226"
+    },
+    {
+      "id": "ad29f701-e654-4372-9192-1638bb098a0d",
+      "created_at": "2026-03-27T07:49:53.463072",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2577",
+        "name": "Fabric V2577 (new-2-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-2-super-100s/V2577.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_lifestyle_slim-3pc",
+        "text": "Imagen 3 lifestyle: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "lifestyle",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2577_lifestyle_classic-studio_1_20260327_075000.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T07:50:03.168870"
+    },
+    {
+      "id": "19a2c55d-3552-4d48-8b59-b600e8dda1c7",
+      "created_at": "2026-03-27T08:30:02.824942",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2519",
+        "name": "Fabric V2519 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2519.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_flatlay_slim-2pc",
+        "text": "Imagen 3 flatlay: slim-2pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "imagen3",
+        "mode": "flatlay",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2519_imagen_slim-2pc_20260327_083008.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T08:30:09.735509"
+    },
+    {
+      "id": "15f82114-9e11-4927-a518-b358920a403e",
+      "created_at": "2026-03-27T09:02:04.201217",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2519",
+        "name": "Fabric V2519 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2519.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_lifestyle_slim-3pc",
+        "text": "Imagen 3 lifestyle: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "lifestyle",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2519_lifestyle_classic-studio_1_20260327_090213.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T09:02:16.100787"
+    },
+    {
+      "id": "85ef8f3d-733c-4e8f-804a-7dc2f9b47763",
+      "created_at": "2026-03-27T09:18:48.634806",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2519",
+        "name": "Fabric V2519 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2519.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_flatlay_slim-2pc",
+        "text": "Imagen 3 flatlay: slim-2pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-2pc",
+        "pipeline": "imagen3",
+        "mode": "flatlay",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2519_imagen_slim-2pc_20260327_091854.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T09:18:56.532410"
+    },
+    {
+      "id": "247d0868-cd49-460b-a880-e5f9c98b02a0",
+      "created_at": "2026-03-27T09:24:29.830096",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2501",
+        "name": "Fabric V2501 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2501.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_flatlay_slim-3pc",
+        "text": "Imagen 3 flatlay: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "flatlay",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_imagen_slim-3pc_20260327_092436.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T09:24:38.153945"
+    },
+    {
+      "id": "368e1373-a0f3-4fb7-92cc-7a618d542e9d",
+      "created_at": "2026-03-27T09:28:46.527786",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2535",
+        "name": "Fabric V2535 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2535.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_flatlay_slim-3pc",
+        "text": "Imagen 3 flatlay: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "flatlay",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2535_imagen_slim-3pc_20260327_092851.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T09:28:52.716929"
+    },
+    {
+      "id": "b7027fb0-8672-4998-a883-72f60ae634b3",
+      "created_at": "2026-03-27T09:28:59.453046",
+      "status": "pending",
+      "source": {
+        "type": "fabric",
+        "id": "V2535",
+        "name": "Fabric V2535 (new-1-super-100s)",
+        "image_url": "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev/mtm-collection/new-1-super-100s/V2535.jpg",
+        "saleor_id": null,
+        "channel": null
+      },
+      "prompt": {
+        "id": "imagen_lifestyle_slim-3pc",
+        "text": "Imagen 3 lifestyle: slim-3pc / dutch-blond / classic-studio"
+      },
+      "settings": {
+        "suit_style": "slim-3pc",
+        "pipeline": "imagen3",
+        "mode": "lifestyle",
+        "model_type": "dutch-blond",
+        "scene_preset": "classic-studio"
+      },
+      "model_used": "imagen3",
+      "output": {
+        "fashn_url": null,
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2535_lifestyle_classic-studio_1_20260327_092906.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-03-27T09:29:08.736914"
+    },
+    {
+      "id": "8507732e-5fa5-4e9b-9435-a09c68fed752",
+      "created_at": "2026-05-09T08:56:55.727181",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxNDA1",
+        "name": "Zand kleur Puur Linnen Pak",
+        "image_url": "https://api.pomandi.com/thumbnail/UHJvZHVjdE1lZGlhOjI5Njk=/4096/",
+        "saleor_id": "UHJvZHVjdDoxNDA1",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_milan-street",
+        "text": "Tall confident male model wearing the suit from the source image. walking through Milan Fashion District at golden hour, soft out-of-focus storefronts behind, warm afternoon light, high-end editorial photography. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "milan-street",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_milan-street",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bf4-4275-7e11-95c6-481dd193c196/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-linnen-pak_milan-street_20260509_085754.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T08:57:58.677407"
+    },
+    {
+      "id": "6723499b-d6c5-4f50-95b8-3f54728bc5c7",
+      "created_at": "2026-05-09T08:58:00.682808",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxMzkx",
+        "name": "\"All Black\" zwarte kostuumpak grote maten tot 3XL",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/products/all-black-suit-big-sizes-0091-715235_edcb2249_thumbnail_4096.jpgv1598631052",
+        "saleor_id": "UHJvZHVjdDoxMzkx",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_wedding-groom",
+        "text": "Tall confident male model wearing the suit from the source image. elegant wedding venue, soft natural light from a tall window, romantic blurred floral arrangements, full body, refined editorial photography. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "wedding-groom",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_wedding-groom",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bf5-3f8c-7dd1-b3c7-3e3c06c9160b/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_all-black-suit-big-sizes_wedding-groom_20260509_085855.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T08:58:59.455048"
+    },
+    {
+      "id": "a49d87fa-279b-40e2-a640-4814614245f4",
+      "created_at": "2026-05-09T08:59:01.460059",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxNDE3",
+        "name": "Blauw pak",
+        "image_url": "https://api.pomandi.com/thumbnail/UHJvZHVjdE1lZGlhOjMwMDI=/4096/",
+        "saleor_id": "UHJvZHVjdDoxNDE3",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_business-office",
+        "text": "Tall confident male model wearing the suit from the source image. modern executive boardroom, large city-skyline window behind, soft daylight, confident posture, business editorial photography. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "business-office",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_business-office",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bf6-2db3-79c2-a36f-d7312b74c4ab/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauw-pak-urununun-kopyasi-1_business-office_20260509_090005.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:00:09.383687"
+    },
+    {
+      "id": "2af64871-729d-4f9d-90dd-2e250d41d260",
+      "created_at": "2026-05-09T09:00:11.385943",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDo3MDc=",
+        "name": "Beige pak heren",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/products/Beigepakheren_e7178daf-4228-4955-a7d6-595f027a0e0e_6b1f84a6_thumbnail_4096.jpg",
+        "saleor_id": "UHJvZHVjdDo3MDc=",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_evening-gala",
+        "text": "Tall confident male model wearing the suit from the source image. luxurious evening gala interior, warm chandelier glow, polished marble floor, blurred crystal lighting bokeh, full body, fashion editorial. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "evening-gala",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_evening-gala",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bf7-407e-7ee0-9d11-e0c452e3ee54/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-pak-heren-2-b45a0df0_evening-gala_20260509_090112.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:01:16.186488"
+    },
+    {
+      "id": "0fbbf5bf-7485-4318-916b-e2e1b9db4c99",
+      "created_at": "2026-05-09T09:01:18.188726",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxNDI5",
+        "name": "\"Aubergine\" bordeaux kostuum heren",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/products/bordeauxkostuumheren_6654fca1_thumbnail_4096.jpgv1598631051",
+        "saleor_id": "UHJvZHVjdDoxNDI5",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_hotel-lobby",
+        "text": "Tall confident male model wearing the suit from the source image. grand luxury hotel lobby, ornate marble columns, golden warm lighting, soft bokeh, full body, refined fashion editorial. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "hotel-lobby",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_hotel-lobby",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bf8-435a-78e2-8cf2-bf9dd32339fc/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_bordeaux-kostuum-heren-aubergi_hotel-lobby_20260509_090208.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:02:12.454081"
+    },
+    {
+      "id": "980e161c-53fc-48e2-a60f-259c1093cf9f",
+      "created_at": "2026-05-09T09:02:14.461796",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDo3MTc=",
+        "name": "Navy Blue Tuxedo with Velvet Lapels",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/products/BlauweSmoking_4_15d04289_thumbnail_4096.jpg",
+        "saleor_id": "UHJvZHVjdDo3MTc=",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_rooftop-sunset",
+        "text": "Tall confident male model wearing the suit from the source image. city rooftop at sunset, warm orange-pink sky, blurred skyline, cinematic light, full body, modern fashion editorial. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "rooftop-sunset",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_rooftop-sunset",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bf9-1f93-7682-9b54-246dd994312a/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauwe-smoking-2e85cff9_rooftop-sunset_20260509_090307.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:03:11.991967"
+    },
+    {
+      "id": "2c9375b9-e8fb-4fd1-82a2-fa96922522d8",
+      "created_at": "2026-05-09T09:03:13.998260",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxNDAx",
+        "name": "Beige grijs pak",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/products/WhatsAppImage2022-07-21at16.07.10_1_c6058671_thumbnail_4096.jpgv1675930288",
+        "saleor_id": "UHJvZHVjdDoxNDAx",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_autumn-city",
+        "text": "Tall confident male model wearing the suit from the source image. European cobblestone street in autumn, warm golden leaves, soft overcast light, full body, fashion editorial photography. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "autumn-city",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_autumn-city",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bfa-0724-7211-9f7c-03a66e3b8aa2/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-grijs-pak_autumn-city_20260509_090410.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:04:14.570804"
+    },
+    {
+      "id": "8c5f81d6-592f-45a1-9c38-aac1e9987e9b",
+      "created_at": "2026-05-09T09:04:16.576456",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxNDI4",
+        "name": "Aubergine / bordeaux geruit trouwpak",
+        "image_url": "https://api.pomandi.com/thumbnail/UHJvZHVjdE1lZGlhOjMwMzY=/4096/",
+        "saleor_id": "UHJvZHVjdDoxNDI4",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_vintage-car",
+        "text": "Tall confident male model wearing the suit from the source image. leaning against a vintage 1960s European car on a quiet street, golden hour, blurred period background, cinematic, full body, editorial photography. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "vintage-car",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_vintage-car",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bfa-fd5f-7a12-bacb-39fdecee9e35/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_bordeaux-geruit-bruidegom-pak_vintage-car_20260509_090511.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:05:15.735343"
+    },
+    {
+      "id": "09ecb25b-e056-4a09-bc53-c9fd73cc8f85",
+      "created_at": "2026-05-09T09:05:17.739919",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxNDAw",
+        "name": "Beige geruit pak",
+        "image_url": "https://saleorme.s3.amazonaws.com/thumbnails/products/WhatsAppImage2021-01-21at09.40.33_8_57b51733_thumbnail_4096.jpgv1675928974",
+        "saleor_id": "UHJvZHVjdDoxNDAw",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_coastal-summer",
+        "text": "Tall confident male model wearing the suit from the source image. Mediterranean coastal promenade, soft turquoise sea blurred behind, warm summer light, full body, fashion editorial. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "coastal-summer",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_coastal-summer",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bfb-eb06-7391-9a72-c798adde787d/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-geruit-trouwkostuum_coastal-summer_20260509_090615.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:06:19.689337"
+    },
+    {
+      "id": "c205945f-c6a7-40a9-9aea-2683e7a459c0",
+      "created_at": "2026-05-09T09:06:21.695126",
+      "status": "pending",
+      "source": {
+        "type": "product",
+        "id": "UHJvZHVjdDoxNDEz",
+        "name": "Blauw Pak Heren",
+        "image_url": "https://api.pomandi.com/thumbnail/UHJvZHVjdE1lZGlhOjI5ODg=/4096/",
+        "saleor_id": "UHJvZHVjdDoxNDEz",
+        "channel": "belgium-channel"
+      },
+      "prompt": {
+        "id": "ad_v1_classic-studio",
+        "text": "Tall confident male model wearing the suit from the source image. minimal studio with seamless warm beige backdrop, soft top key light with subtle shadow, full body, high-end catalog photography. Sharp symmetrical features, clean-shaven, healthy skin, relaxed yet confident pose. 4:5 aspect ratio, full body visible from head to shoes, professional fashion editorial photography, perfect exposure, sharp details. Do NOT change the suit color, fabric pattern, or cut — match exactly."
+      },
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "scene": "classic-studio",
+        "purpose": "ad_creative"
+      },
+      "model_used": "fashn_classic-studio",
+      "output": {
+        "fashn_url": "https://cdn.fashn.ai/019e0bfc-e447-7291-b49a-e5410d7351b7/product_to_model_0.png",
+        "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauw-linnen-pak-heren_classic-studio_20260509_090710.png"
+      },
+      "feedback": {
+        "reviewed_at": null,
+        "approved": null,
+        "rejection_reason": null,
+        "rating": null,
+        "notes": null
+      },
+      "regeneration": {
+        "is_regeneration": false,
+        "original_generation_id": null,
+        "regeneration_count": 0
+      },
+      "completed_at": "2026-05-09T09:07:14.568907"
+    }
+  ]
+}

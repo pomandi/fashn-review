@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomandi - Fabric Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+        .glass-dark { background: rgba(0,0,0,0.3); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+
+        .fabric-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .fabric-card:hover { transform: scale(1.03); }
+        .fabric-card.selected {
+            ring: 3px;
+            box-shadow: 0 0 0 3px #6366f1, 0 0 20px rgba(99,102,241,0.3);
+        }
+        .fabric-card .check-badge {
+            display: none;
+            position: absolute; top: 8px; right: 8px;
+            width: 28px; height: 28px;
+            background: #6366f1; border-radius: 50%;
+            align-items: center; justify-content: center;
+            z-index: 10;
+        }
+        .fabric-card.selected .check-badge { display: flex; }
+
+        .fabric-img {
+            width: 100%; aspect-ratio: 1;
+            object-fit: cover; border-radius: 8px 8px 0 0;
+            image-rendering: auto;
+        }
+
+        /* Lightbox / Zoom Modal */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.92);
+            display: none; align-items: center; justify-content: center;
+            cursor: zoom-out;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img {
+            max-width: 90vw; max-height: 90vh;
+            object-fit: contain;
+            cursor: grab;
+            transition: transform 0.2s ease;
+        }
+        .lightbox img.zoomed {
+            max-width: none; max-height: none;
+            cursor: grabbing;
+        }
+        .lightbox .lb-close {
+            position: absolute; top: 16px; right: 20px;
+            color: white; font-size: 28px; cursor: pointer;
+            z-index: 10000; background: rgba(0,0,0,0.5);
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .lightbox .lb-info {
+            position: absolute; bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            color: white; font-size: 14px;
+            background: rgba(0,0,0,0.6); padding: 8px 16px;
+            border-radius: 8px; z-index: 10000;
+        }
+        .fabric-card .zoom-icon {
+            position: absolute; top: 8px; left: 8px;
+            width: 28px; height: 28px; border-radius: 50%;
+            background: rgba(0,0,0,0.5); color: white;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.2s;
+            z-index: 5; cursor: zoom-in;
+        }
+        .fabric-card:hover .zoom-icon { opacity: 1; }
+
+        .folder-tab {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .folder-tab.active {
+            background: rgba(99,102,241,0.3);
+            border-color: #6366f1;
+            color: #a5b4fc;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+            transition: all 0.2s ease;
+        }
+        .btn-generate:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99,102,241,0.5); }
+        .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .style-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .style-option.active {
+            background: rgba(99,102,241,0.2);
+            border-color: #6366f1;
+        }
+
+        .loading-spinner {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid #6366f1;
+            border-radius: 50%;
+            width: 20px; height: 20px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .toast {
+            position: fixed; bottom: 24px; right: 24px;
+            padding: 12px 20px; border-radius: 12px;
+            color: white; font-weight: 500;
+            z-index: 1000; transform: translateY(100px); opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { background: rgba(16,185,129,0.9); }
+        .toast.error { background: rgba(239,68,68,0.9); }
+        .toast.info { background: rgba(99,102,241,0.9); }
+
+        /* Range sliders */
+        input[type=range] { -webkit-appearance: none; height: 8px; border-radius: 4px; outline: none; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+            background: white; border: 2px solid rgba(99,102,241,0.8);
+            cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 18px; height: 18px; border-radius: 50%; background: white;
+            border: 2px solid rgba(99,102,241,0.8); cursor: pointer;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+    </style>
+</head>
+<body class="text-white">
+
+<!-- Header -->
+<header class="glass-dark sticky top-0 z-50 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                Pomandi Fabric Selector
+            </h1>
+            <span class="text-xs text-gray-500 glass px-2 py-1 rounded">FASHN AI</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="selectionCount" class="text-sm text-gray-400">
+                <span id="selectedNum">0</span> selected
+            </div>
+            <a href="/" class="text-sm text-gray-400 hover:text-white transition">Review App</a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Layout -->
+<div class="max-w-7xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+
+    <!-- Left: Fabric Grid -->
+    <div class="flex-1 min-w-0">
+        <!-- Folder Tabs -->
+        <div class="mb-4 overflow-x-auto pb-2">
+            <div id="folderTabs" class="flex gap-2">
+                <div class="text-sm text-gray-500 flex items-center mr-2">Loading folders...</div>
+            </div>
+        </div>
+
+        <!-- Select All / Deselect -->
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+                <button onclick="selectAllInFolder()" class="text-xs glass px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition">
+                    Select All
+                </button>
+                <button onclick="deselectAllInFolder()" class="text-xs glass px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition">
+                    Deselect All
+                </button>
+                <button onclick="deselectAll()" class="text-xs glass px-3 py-1.5 rounded-lg text-red-300 hover:text-red-200 transition">
+                    Clear All
+                </button>
+            </div>
+            <div id="folderCount" class="text-xs text-gray-500"></div>
+        </div>
+
+        <!-- Fabric Grid -->
+        <div id="fabricGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="col-span-full text-center text-gray-500 py-12">Select a folder to view fabrics</div>
+        </div>
+    </div>
+
+    <!-- Right: Control Panel -->
+    <div class="lg:w-96 flex-shrink-0">
+        <div class="glass rounded-2xl p-5 sticky top-24 space-y-4 max-h-[90vh] overflow-y-auto">
+            <h2 class="text-lg font-semibold text-gray-200">Generate Settings</h2>
+
+            <!-- Pipeline Selection -->
+            <div>
+                <label class="text-sm text-gray-400 mb-2 block">AI Pipeline</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="style-option glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-pipeline="imagen" onclick="selectPipeline(this)">
+                        <div class="text-sm font-medium text-green-400">Imagen 3</div>
+                        <div class="text-[10px] text-gray-500">Google AI, better color</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-pipeline="fashn" onclick="selectPipeline(this)">
+                        <div class="text-sm font-medium text-blue-400">FASHN AI</div>
+                        <div class="text-[10px] text-gray-500">Product-to-model</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mode (Imagen only) -->
+            <div id="imagenModeSection">
+                <label class="text-sm text-gray-400 mb-2 block">Mode</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="style-option active glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-mode="flatlay" onclick="selectMode(this)">
+                        <div class="text-sm font-medium">Flat-lay</div>
+                        <div class="text-[10px] text-gray-500">Product photo</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-mode="lifestyle" onclick="selectMode(this)">
+                        <div class="text-sm font-medium">Lifestyle</div>
+                        <div class="text-[10px] text-gray-500">Editorial photo (x4)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Type (lifestyle only) -->
+            <div id="modelTypeSection" class="hidden">
+                <label class="text-sm text-gray-400 mb-2 block">Model Type</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="style-option active glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-model="dutch-blond" onclick="selectModel(this)">
+                        <div class="text-xs font-medium">Dutch Blond</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-model="italian-dark" onclick="selectModel(this)">
+                        <div class="text-xs font-medium">Italian Dark</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-model="classic-british" onclick="selectModel(this)">
+                        <div class="text-xs font-medium">Classic British</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-3 py-2 cursor-pointer border border-transparent" data-model="young-modern" onclick="selectModel(this)">
+                        <div class="text-xs font-medium">Young Modern</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene Preset (lifestyle only) -->
+            <div id="sceneSection" class="hidden">
+                <label class="text-sm text-gray-400 mb-2 block">Scene</label>
+                <div class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto pr-1">
+                    <div class="style-option active glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="classic-studio" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Classic Studio</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="milan-street" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Milan Street</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="wedding-groom" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Wedding</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="business-office" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Business Office</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="evening-gala" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Evening Gala</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="coastal-summer" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Coastal Summer</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="autumn-city" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Autumn City</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="hotel-lobby" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Hotel Lobby</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="rooftop-sunset" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Rooftop Sunset</div>
+                    </div>
+                    <div class="style-option glass-dark rounded-lg px-2 py-1.5 cursor-pointer border border-transparent" data-scene="vintage-car" onclick="selectScene(this)">
+                        <div class="text-xs font-medium">Vintage Gentleman</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suit Style -->
+            <div>
+                <label class="text-sm text-gray-400 mb-2 block">Suit Style</label>
+                <select id="suitStyleSelect" class="w-full bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-sm text-gray-200 focus:border-indigo-500 focus:outline-none">
+                    <option value="slim-2pc">Slim Fit 2-Piece</option>
+                    <option value="classic-2pc">Classic 2-Piece</option>
+                    <option value="slim-3pc">Slim Fit 3-Piece</option>
+                    <option value="classic-3pc">Classic 3-Piece</option>
+                    <option value="db-6btn">Double-Breasted 6btn</option>
+                    <option value="tuxedo-shawl">Tuxedo (Shawl)</option>
+                    <option value="tuxedo-peak">Tuxedo (Peak)</option>
+                </select>
+            </div>
+
+            <!-- Color Detection (Claude Vision AI) -->
+            <div id="colorSection" class="hidden">
+                <label class="text-sm text-gray-400 mb-2 block">Fabric Color (AI detected)</label>
+                <div class="glass-dark rounded-lg p-3 space-y-3">
+                    <div class="flex gap-3 items-center">
+                        <div id="colorSwatch" class="w-16 h-16 rounded-xl border-2 border-white/20 flex-shrink-0 shadow-lg" style="background:#666"></div>
+                        <div class="flex-1 min-w-0">
+                            <div id="colorNameDisplay" class="text-base font-semibold text-gray-100">Analyzing...</div>
+                            <div id="colorHexDisplay" class="text-sm font-mono text-gray-400">#000000</div>
+                            <div id="colorRgbDisplay" class="text-[10px] text-gray-600">RGB(0,0,0)</div>
+                        </div>
+                        <button onclick="analyzeSelectedColor()" class="text-[10px] glass px-2 py-1 rounded text-gray-400 hover:text-white flex-shrink-0">Re-scan</button>
+                    </div>
+                    <input id="colorNameOverride" type="text" placeholder="Override color name if wrong..."
+                        class="w-full bg-black/30 border border-white/10 rounded px-2 py-1.5 text-sm text-gray-200 placeholder-gray-600 focus:border-amber-500 focus:outline-none">
+                    <div class="text-[10px] text-gray-600">This name goes directly to AI prompt. Edit if needed.</div>
+                </div>
+            </div>
+
+            <!-- Custom Prompt -->
+            <div>
+                <label class="text-sm text-gray-400 mb-2 block">Custom Scene (optional)</label>
+                <textarea id="customPrompt" rows="2" placeholder="Custom scene description..."
+                    class="w-full bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:border-indigo-500 focus:outline-none resize-none"></textarea>
+            </div>
+
+            <!-- Selected Fabrics Preview -->
+            <div>
+                <label class="text-sm text-gray-400 mb-2 block">Selected (<span id="selectedCount2">0</span>)</label>
+                <div id="selectedPreview" class="flex flex-wrap gap-1.5 max-h-20 overflow-y-auto">
+                    <span class="text-xs text-gray-600">None selected</span>
+                </div>
+            </div>
+
+            <!-- Generate Buttons -->
+            <button id="generateBtn" onclick="generateSuits()" disabled
+                class="btn-generate w-full py-3 rounded-xl text-white font-semibold text-sm">
+                Generate Suit Images
+            </button>
+
+            <!-- Progress -->
+            <div id="progressSection" class="hidden">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="loading-spinner"></div>
+                    <span id="progressText" class="text-sm text-gray-400">Generating...</span>
+                </div>
+                <div class="w-full bg-black/30 rounded-full h-2">
+                    <div id="progressBar" class="bg-indigo-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <div id="progressLog" class="mt-3 max-h-32 overflow-y-auto text-xs text-gray-500 space-y-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- Lightbox Zoom Modal -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <div class="lb-close" onclick="closeLightbox(event)">&times;</div>
+    <img id="lbImg" src="" alt="" draggable="false">
+    <div class="lb-info">
+        <span id="lbCode"></span> — Scroll to zoom, drag to pan, click outside to close
+    </div>
+</div>
+
+<script>
+    // State
+    let folders = [];
+    let currentFolder = null;
+    let currentFabrics = [];
+    let selectedFabrics = new Map();
+    let selectedStyle = 'slim-2pc';
+    let selectedPipeline = 'imagen';
+    let selectedMode = 'flatlay';
+    let selectedModelType = 'dutch-blond';
+    let selectedScenePreset = 'classic-studio';
+    let isGenerating = false;
+
+    // Init pipeline UI
+    document.querySelector('[data-pipeline="imagen"]').classList.add('active');
+    updatePipelineUI();
+
+    // Init
+    document.addEventListener('DOMContentLoaded', loadFolders);
+
+    async function loadFolders() {
+        try {
+            const res = await fetch('/api/fabric-folders');
+            const data = await res.json();
+            folders = data.folders;
+            renderFolderTabs();
+            if (folders.length > 0) {
+                selectFolder(folders[0]);
+            }
+        } catch (e) {
+            showToast('Failed to load folders', 'error');
+        }
+    }
+
+    function renderFolderTabs() {
+        const container = document.getElementById('folderTabs');
+        container.innerHTML = folders.map(f => `
+            <button class="folder-tab glass-dark px-3 py-1.5 rounded-lg text-xs text-gray-400 border border-transparent"
+                    data-folder="${f.path}" onclick="selectFolder(${JSON.stringify(f).replace(/"/g, '&quot;')})">
+                ${f.display_name}
+            </button>
+        `).join('');
+    }
+
+    async function selectFolder(folder) {
+        currentFolder = folder;
+
+        // Update active tab
+        document.querySelectorAll('.folder-tab').forEach(t => {
+            t.classList.toggle('active', t.dataset.folder === folder.path);
+        });
+
+        // Load fabrics
+        document.getElementById('fabricGrid').innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <div class="loading-spinner mx-auto mb-3"></div>
+                <div class="text-sm text-gray-500">Loading fabrics...</div>
+            </div>`;
+
+        try {
+            const res = await fetch(`/api/fabrics/${encodeURIComponent(folder.name)}`);
+            const data = await res.json();
+            currentFabrics = data.fabrics;
+            document.getElementById('folderCount').textContent = `${data.count} fabrics`;
+            renderFabricGrid();
+        } catch (e) {
+            document.getElementById('fabricGrid').innerHTML = `
+                <div class="col-span-full text-center text-red-400 py-12">Failed to load fabrics</div>`;
+        }
+    }
+
+    function renderFabricGrid() {
+        const grid = document.getElementById('fabricGrid');
+        // Render cards with placeholder, lazy load images via IntersectionObserver
+        grid.innerHTML = currentFabrics.map((f, idx) => `
+            <div class="fabric-card rounded-xl overflow-hidden glass-dark ${selectedFabrics.has(f.key) ? 'selected' : ''}"
+                 data-key="${f.key}" data-idx="${idx}" onclick="toggleFabric(this, ${JSON.stringify(f).replace(/"/g, '&quot;')})">
+                <div class="check-badge">
+                    <svg width="16" height="16" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <div class="zoom-icon" onclick="event.stopPropagation(); openLightbox('${f.url}', '${f.code}')">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
+                    </svg>
+                </div>
+                <div class="fabric-img" style="background:#1a1a2e;display:flex;align-items:center;justify-content:center;">
+                    <span class="text-gray-600 text-xs">${f.code}</span>
+                </div>
+                <div class="px-3 py-2">
+                    <div class="text-sm font-medium text-gray-300 truncate">${f.code}</div>
+                    <div class="text-xs text-gray-600">${formatSize(f.size)}</div>
+                </div>
+            </div>
+        `).join('');
+
+        // Lazy load with IntersectionObserver — load images only when visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const idx = parseInt(card.dataset.idx);
+                    const f = currentFabrics[idx];
+                    if (!f) return;
+                    const placeholder = card.querySelector('.fabric-img');
+                    const img = document.createElement('img');
+                    img.className = 'fabric-img';
+                    img.alt = f.code;
+                    img.src = f.url;
+                    img.ondblclick = (e) => { e.stopPropagation(); openLightbox(f.url, f.code); };
+                    img.onerror = () => { img.style.background = '#333'; img.alt = f.code; };
+                    placeholder.replaceWith(img);
+                    observer.unobserve(card);
+                }
+            });
+        }, { rootMargin: '200px' }); // Start loading 200px before visible
+
+        grid.querySelectorAll('.fabric-card').forEach(card => observer.observe(card));
+    }
+
+    let lastAnalyzedColor = null;
+    let currentColorHSL = { h: 0, s: 50, l: 50 };
+
+    function toggleFabric(el, fabric) {
+        if (selectedFabrics.has(fabric.key)) {
+            selectedFabrics.delete(fabric.key);
+            el.classList.remove('selected');
+        } else {
+            selectedFabrics.set(fabric.key, fabric);
+            el.classList.add('selected');
+        }
+        updateSelectionUI();
+
+        // Auto-analyze color when exactly 1 fabric selected
+        if (selectedFabrics.size === 1) {
+            const f = Array.from(selectedFabrics.values())[0];
+            analyzeColor(f.url);
+        } else if (selectedFabrics.size === 0) {
+            document.getElementById('colorSection').classList.add('hidden');
+        }
+    }
+
+    async function analyzeColor(url) {
+        const section = document.getElementById('colorSection');
+        section.classList.remove('hidden');
+        document.getElementById('colorNameDisplay').textContent = 'Analyzing with AI...';
+        document.getElementById('colorHexDisplay').textContent = '';
+        document.getElementById('colorRgbDisplay').textContent = '';
+
+        try {
+            const res = await fetch(`/api/analyze-color?url=${encodeURIComponent(url)}`);
+            const data = await res.json();
+            lastAnalyzedColor = data;
+
+            document.getElementById('colorSwatch').style.background = data.hex;
+            document.getElementById('colorNameDisplay').textContent = data.color_name;
+            document.getElementById('colorHexDisplay').textContent = data.hex;
+            document.getElementById('colorRgbDisplay').textContent = `RGB(${data.rgb.join(',')})`;
+            document.getElementById('colorNameOverride').value = data.color_name;
+        } catch (e) {
+            document.getElementById('colorNameDisplay').textContent = 'Analysis failed';
+        }
+    }
+
+    function analyzeSelectedColor() {
+        if (selectedFabrics.size > 0) {
+            const f = Array.from(selectedFabrics.values())[0];
+            analyzeColor(f.url);
+        }
+    }
+
+    function onColorSlider() {
+        currentColorHSL.h = parseInt(document.getElementById('hueSlider').value);
+        currentColorHSL.s = parseInt(document.getElementById('satSlider').value);
+        currentColorHSL.l = parseInt(document.getElementById('ligSlider').value);
+        updateColorDisplay();
+    }
+
+    function updateColorDisplay() {
+        const { h, s, l } = currentColorHSL;
+        document.getElementById('hueVal').textContent = h;
+        document.getElementById('satVal').textContent = s + '%';
+        document.getElementById('ligVal').textContent = l + '%';
+
+        // HSL to RGB
+        const rgb = hslToRgb(h, s, l);
+        const hex = '#' + rgb.map(c => c.toString(16).padStart(2, '0')).join('');
+
+        document.getElementById('colorSwatch').style.background = hex;
+        document.getElementById('colorHexDisplay').textContent = hex;
+        document.getElementById('colorRgbDisplay').textContent = `RGB(${rgb.join(',')}) — HSL(${h},${s}%,${l}%)`;
+
+        // Update saturation slider gradient
+        const satBg = `linear-gradient(to right, hsl(${h},0%,${l}%), hsl(${h},100%,${l}%))`;
+        document.getElementById('satSlider').style.background = satBg;
+        // Update lightness slider gradient
+        const ligBg = `linear-gradient(to right, hsl(${h},${s}%,0%), hsl(${h},${s}%,50%), hsl(${h},${s}%,100%))`;
+        document.getElementById('ligSlider').style.background = ligBg;
+    }
+
+    function hslToRgb(h, s, l) {
+        s /= 100; l /= 100;
+        const c = (1 - Math.abs(2 * l - 1)) * s;
+        const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+        const m = l - c / 2;
+        let r, g, b;
+        if (h < 60) { r = c; g = x; b = 0; }
+        else if (h < 120) { r = x; g = c; b = 0; }
+        else if (h < 180) { r = 0; g = c; b = x; }
+        else if (h < 240) { r = 0; g = x; b = c; }
+        else if (h < 300) { r = x; g = 0; b = c; }
+        else { r = c; g = 0; b = x; }
+        return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
+    }
+
+    function selectAllInFolder() {
+        currentFabrics.forEach(f => selectedFabrics.set(f.key, f));
+        renderFabricGrid();
+        updateSelectionUI();
+    }
+
+    function deselectAllInFolder() {
+        currentFabrics.forEach(f => selectedFabrics.delete(f.key));
+        renderFabricGrid();
+        updateSelectionUI();
+    }
+
+    function deselectAll() {
+        selectedFabrics.clear();
+        renderFabricGrid();
+        updateSelectionUI();
+    }
+
+    function removeSelected(key) {
+        selectedFabrics.delete(key);
+        renderFabricGrid();
+        updateSelectionUI();
+    }
+
+    function updateSelectionUI() {
+        const count = selectedFabrics.size;
+        document.getElementById('selectedNum').textContent = count;
+        document.getElementById('selectedCount2').textContent = count;
+        const btn = document.getElementById('generateBtn');
+        btn.disabled = count === 0 || isGenerating;
+        btn.textContent = count > 0 ? `Generate ${count} Suit Image${count > 1 ? 's' : ''}` : 'Generate Suit Images';
+
+        // Preview
+        const preview = document.getElementById('selectedPreview');
+        if (count === 0) {
+            preview.innerHTML = '<span class="text-xs text-gray-600">None selected</span>';
+        } else {
+            preview.innerHTML = Array.from(selectedFabrics.values()).map(f => `
+                <span class="inline-flex items-center gap-1 bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded text-[10px]">
+                    ${f.code}
+                    <button onclick="event.stopPropagation(); removeSelected('${f.key}')" class="hover:text-white">&times;</button>
+                </span>
+            `).join('');
+        }
+    }
+
+    function selectPipeline(el) {
+        document.querySelectorAll('[data-pipeline]').forEach(s => s.classList.remove('active'));
+        el.classList.add('active');
+        selectedPipeline = el.dataset.pipeline;
+        updatePipelineUI();
+    }
+
+    function selectMode(el) {
+        document.querySelectorAll('[data-mode]').forEach(s => s.classList.remove('active'));
+        el.classList.add('active');
+        selectedMode = el.dataset.mode;
+        updatePipelineUI();
+    }
+
+    function selectModel(el) {
+        document.querySelectorAll('[data-model]').forEach(s => s.classList.remove('active'));
+        el.classList.add('active');
+        selectedModelType = el.dataset.model;
+    }
+
+    function selectScene(el) {
+        document.querySelectorAll('[data-scene]').forEach(s => s.classList.remove('active'));
+        el.classList.add('active');
+        selectedScenePreset = el.dataset.scene;
+    }
+
+    function selectStyle(el) {
+        document.querySelectorAll('.style-option').forEach(s => s.classList.remove('active'));
+        el.classList.add('active');
+        selectedStyle = el.dataset.style;
+    }
+
+    function updatePipelineUI() {
+        const isImagen = selectedPipeline === 'imagen';
+        document.getElementById('imagenModeSection').style.display = isImagen ? '' : 'none';
+        const isLifestyle = isImagen && selectedMode === 'lifestyle';
+        document.getElementById('modelTypeSection').style.display = isLifestyle ? '' : 'none';
+        document.getElementById('sceneSection').style.display = isLifestyle ? '' : 'none';
+    }
+
+    async function generateSuits() {
+        if (selectedFabrics.size === 0 || isGenerating) return;
+        isGenerating = true;
+
+        const btn = document.getElementById('generateBtn');
+        btn.disabled = true;
+        btn.textContent = 'Generating...';
+
+        document.getElementById('progressSection').classList.remove('hidden');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const progressLog = document.getElementById('progressLog');
+        progressLog.innerHTML = '';
+
+        const fabrics = Array.from(selectedFabrics.values());
+        const customPrompt = document.getElementById('customPrompt').value.trim();
+        const suitStyle = document.getElementById('suitStyleSelect').value;
+
+        const total = fabrics.length;
+        let completed = 0;
+
+        for (const fabric of fabrics) {
+            progressText.textContent = `Generating ${completed + 1}/${total}: ${fabric.code}`;
+            addLog(`Starting ${fabric.code} (${selectedPipeline})...`);
+
+            try {
+                let res, data;
+
+                if (selectedPipeline === 'imagen') {
+                    const colorOverride = document.getElementById('colorNameOverride')?.value?.trim() || '';
+                    // Imagen 3 pipeline
+                    res = await fetch('/api/imagen/generate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fabric_url: fabric.url,
+                            fabric_code: fabric.code,
+                            fabric_folder: fabric.folder,
+                            mode: selectedMode,
+                            suit_style: suitStyle,
+                            model_type: selectedModelType,
+                            scene_preset: selectedScenePreset,
+                            custom_scene: customPrompt,
+                            color_name_override: colorOverride,
+                        })
+                    });
+                    data = await res.json();
+
+                    if (data.status === 'success') {
+                        const imgCount = data.count || 1;
+                        addLog(`${fabric.code} - OK (${imgCount} image${imgCount > 1 ? 's' : ''})`, 'text-green-400');
+                        if (data.images) {
+                            data.images.forEach((url, i) => addLog(`  Image ${i+1}: ${url.split('/').pop()}`, 'text-gray-500'));
+                        }
+                    } else {
+                        addLog(`${fabric.code} - FAILED: ${data.error || 'Unknown'}`, 'text-red-400');
+                    }
+                } else {
+                    // FASHN pipeline
+                    res = await fetch('/api/generate-suits', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fabrics: [fabric],
+                            suit_style: suitStyle,
+                            custom_prompt: customPrompt
+                        })
+                    });
+                    data = await res.json();
+
+                    if (data.successful > 0) {
+                        addLog(`${fabric.code} - OK`, 'text-green-400');
+                    } else {
+                        addLog(`${fabric.code} - FAILED: ${data.results?.[0]?.error || 'Unknown'}`, 'text-red-400');
+                    }
+                }
+            } catch (e) {
+                addLog(`${fabric.code} - ERROR: ${e.message}`, 'text-red-400');
+            }
+
+            completed++;
+            progressBar.style.width = `${(completed / total) * 100}%`;
+        }
+
+        progressText.textContent = `Done! ${completed}/${total} completed`;
+        isGenerating = false;
+        btn.disabled = false;
+        btn.textContent = 'Generate Suit Images';
+        showToast(`Generation complete! ${completed} images queued for review.`, 'success');
+    }
+
+    function addLog(msg, colorClass = 'text-gray-500') {
+        const log = document.getElementById('progressLog');
+        const line = document.createElement('div');
+        line.className = colorClass;
+        line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        log.appendChild(line);
+        log.scrollTop = log.scrollHeight;
+    }
+
+    function formatSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+    // ── Lightbox Zoom ──
+    let lbZoom = 1;
+    let lbPan = { x: 0, y: 0 };
+    let lbDragging = false;
+    let lbDragStart = { x: 0, y: 0 };
+
+    function openLightbox(url, code) {
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lbImg');
+        document.getElementById('lbCode').textContent = code;
+        img.src = url;
+        img.style.transform = 'scale(1) translate(0px, 0px)';
+        img.classList.remove('zoomed');
+        lbZoom = 1; lbPan = { x: 0, y: 0 };
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+        if (e.target.id === 'lbImg') return; // don't close when clicking image
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Scroll to zoom
+    document.getElementById('lbImg').addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.3 : 0.3;
+        lbZoom = Math.max(0.5, Math.min(8, lbZoom + delta));
+        applyLbTransform();
+        document.getElementById('lbImg').classList.toggle('zoomed', lbZoom > 1.1);
+    }, { passive: false });
+
+    // Drag to pan
+    const lbImg = document.getElementById('lbImg');
+    lbImg.addEventListener('mousedown', (e) => {
+        if (lbZoom <= 1.1) return;
+        lbDragging = true;
+        lbDragStart = { x: e.clientX - lbPan.x, y: e.clientY - lbPan.y };
+        lbImg.style.cursor = 'grabbing';
+    });
+    document.addEventListener('mousemove', (e) => {
+        if (!lbDragging) return;
+        lbPan.x = e.clientX - lbDragStart.x;
+        lbPan.y = e.clientY - lbDragStart.y;
+        applyLbTransform();
+    });
+    document.addEventListener('mouseup', () => {
+        lbDragging = false;
+        lbImg.style.cursor = lbZoom > 1.1 ? 'grab' : 'zoom-out';
+    });
+
+    // Touch pinch zoom
+    let lastTouchDist = 0;
+    lbImg.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        } else if (e.touches.length === 1 && lbZoom > 1.1) {
+            lbDragging = true;
+            lbDragStart = { x: e.touches[0].clientX - lbPan.x, y: e.touches[0].clientY - lbPan.y };
+        }
+    }, { passive: true });
+    lbImg.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+            e.preventDefault();
+            const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            lbZoom = Math.max(0.5, Math.min(8, lbZoom * (dist / lastTouchDist)));
+            lastTouchDist = dist;
+            applyLbTransform();
+        } else if (lbDragging && e.touches.length === 1) {
+            lbPan.x = e.touches[0].clientX - lbDragStart.x;
+            lbPan.y = e.touches[0].clientY - lbDragStart.y;
+            applyLbTransform();
+        }
+    }, { passive: false });
+    lbImg.addEventListener('touchend', () => { lbDragging = false; });
+
+    function applyLbTransform() {
+        document.getElementById('lbImg').style.transform = `scale(${lbZoom}) translate(${lbPan.x / lbZoom}px, ${lbPan.y / lbZoom}px)`;
+    }
+
+    function showToast(msg, type = 'info') {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.className = `toast ${type} show`;
+        setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+</script>
+</body>
+</html>

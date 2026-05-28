@@ -1,0 +1,12 @@
+.env
+.env.local
+*.pyc
+__pycache__/
+*.egg-info/
+output/
+logs/
+fit/
+.venv/
+venv/
+.DS_Store
+*.swp

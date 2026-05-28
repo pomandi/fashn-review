@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-03-26T17:14:19.768568",
+  "active_prompt": "v3_production",
+  "prompts": {
+    "v1_initial": {
+      "id": "v1_initial",
+      "name": "Initial Test Prompt",
+      "status": "deprecated",
+      "created_at": "2025-12-11T06:00:00Z",
+      "deprecated_at": "2025-12-11T07:00:00Z",
+      "deprecation_reason": "Brand name 'Vogue' appeared as watermark",
+      "prompt": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial style, Vogue magazine cover quality.",
+      "settings": {
+        "aspect_ratio": "3:4",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "results": {
+        "total_generations": 1,
+        "approved": 0,
+        "rejected": 1,
+        "approval_rate": 0
+      },
+      "notes": "Do NOT use brand names - they appear as watermarks"
+    },
+    "v2_no_brand": {
+      "id": "v2_no_brand",
+      "name": "No Brand Names",
+      "status": "deprecated",
+      "created_at": "2025-12-11T07:00:00Z",
+      "deprecated_at": "2025-12-11T07:15:00Z",
+      "deprecation_reason": "Aspect ratio 9:16 caused bad camera angle",
+      "prompt": "Full body shot from head to feet including shoes. Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently. The entire body must be visible - head, torso, legs, and polished dress shoes. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose, one hand slightly in pocket. Soft out-of-focus Milan fashion district background, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality. Full length portrait, do not crop any body parts.",
+      "settings": {
+        "aspect_ratio": "9:16",
+        "resolution": "4k",
+        "face_reference": true,
+        "face_reference_mode": "match_reference"
+      },
+      "results": {
+        "total_generations": 1,
+        "approved": 0,
+        "rejected": 1,
+        "approval_rate": 0
+      },
+      "notes": "9:16 aspect ratio caused overhead camera angle - too narrow"
+    },
+    "v3_production": {
+      "id": "v3_production",
+      "name": "Production Ready",
+      "status": "active",
+      "created_at": "2025-12-11T07:12:00Z",
+      "prompt": "Tall elegant blond Dutch man, age 28-32, refined Italian style tailoring, standing confidently with full body visible. Sharp symmetrical features, clean-shaven, healthy glowing skin. Relaxed yet confident pose. Soft out-of-focus Italian city street background inspired by Milan fashion district, warm natural daylight, gentle shadows. Studio-quality lighting, perfect exposure, professional fashion editorial photography, high-end catalog quality.",
+      "settings": {
+        "aspect_ratio": "4:5",
+        "resolution": "4k",
+        "face_reference": false,
+        "face_reference_mode": "match_reference"
+      },
+      "results": {
+        "total_generations": 16,
+        "approved": 14,
+        "rejected": 2,
+        "approval_rate": 87.5
+      },
+      "notes": "APPROVED - 4:5 optimal for mobile, Meta Ads, website. No brand watermarks."
+    }
+  },
+  "learnings": [
+    {
+      "date": "2025-12-12",
+      "lesson": "Windows PowerShell/CMD cannot print emojis - use ASCII characters only in print statements to avoid UnicodeEncodeError (cp1252 codec)",
+      "severity": "high"
+    },
+    {
+      "date": "2025-12-12",
+      "lesson": "face_reference feature causes high credit consumption - disable unless specifically needed for face consistency",
+      "severity": "critical"
+    },
+    {
+      "date": "2025-12-11",
+      "lesson": "Never use brand names (Vogue, GQ, etc.) in prompts - they appear as watermarks",
+      "severity": "critical"
+    },
+    {
+      "date": "2025-12-11",
+      "lesson": "9:16 aspect ratio causes overhead camera angles - avoid for full body shots",
+      "severity": "high"
+    },
+    {
+      "date": "2025-12-11",
+      "lesson": "4:5 aspect ratio is optimal for mobile-first, works on Meta Ads and website",
+      "severity": "info"
+    },
+    {
+      "date": "2025-12-11",
+      "lesson": "Use 'product-to-model' endpoint, NOT 'tryon' for product photography",
+      "severity": "critical"
+    }
+  ]
+}

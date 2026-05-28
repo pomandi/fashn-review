@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-09T09:07:16.574701",
+  "results": [
+    {
+      "product": "Zand kleur Puur Linnen Pak",
+      "scene": "milan-street",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-linnen-pak_milan-street_20260509_085754.png",
+      "ok": true
+    },
+    {
+      "product": "\"All Black\" zwarte kostuumpak grote maten tot 3XL",
+      "scene": "wedding-groom",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_all-black-suit-big-sizes_wedding-groom_20260509_085855.png",
+      "ok": true
+    },
+    {
+      "product": "Blauw pak",
+      "scene": "business-office",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauw-pak-urununun-kopyasi-1_business-office_20260509_090005.png",
+      "ok": true
+    },
+    {
+      "product": "Beige pak heren",
+      "scene": "evening-gala",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-pak-heren-2-b45a0df0_evening-gala_20260509_090112.png",
+      "ok": true
+    },
+    {
+      "product": "\"Aubergine\" bordeaux kostuum heren",
+      "scene": "hotel-lobby",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_bordeaux-kostuum-heren-aubergi_hotel-lobby_20260509_090208.png",
+      "ok": true
+    },
+    {
+      "product": "Navy Blue Tuxedo with Velvet Lapels",
+      "scene": "rooftop-sunset",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauwe-smoking-2e85cff9_rooftop-sunset_20260509_090307.png",
+      "ok": true
+    },
+    {
+      "product": "Beige grijs pak",
+      "scene": "autumn-city",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-grijs-pak_autumn-city_20260509_090410.png",
+      "ok": true
+    },
+    {
+      "product": "Aubergine / bordeaux geruit trouwpak",
+      "scene": "vintage-car",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_bordeaux-geruit-bruidegom-pak_vintage-car_20260509_090511.png",
+      "ok": true
+    },
+    {
+      "product": "Beige geruit pak",
+      "scene": "coastal-summer",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-geruit-trouwkostuum_coastal-summer_20260509_090615.png",
+      "ok": true
+    },
+    {
+      "product": "Blauw Pak Heren",
+      "scene": "classic-studio",
+      "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauw-linnen-pak-heren_classic-studio_20260509_090710.png",
+      "ok": true
+    }
+  ]
+}
