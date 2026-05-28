@@ -203,6 +203,13 @@ def approve(generation_id):
     # Move to approved folder in S3
     if gen['output']['s3_url']:
         new_s3_url = s3_client.move_to_approved(gen['output']['s3_url'])
+        if new_s3_url:
+            # Persist the new location so future references don't 403 against the old path.
+            gen['output']['s3_url'] = new_s3_url
+            try:
+                tracker._save_data()
+            except Exception as e:
+                print(f"[approve] save after S3 move failed: {e}")
 
     source_type = gen['source'].get('type')
     image_url = new_s3_url or gen['output'].get('s3_url') or gen['output'].get('fashn_url')

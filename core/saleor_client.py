@@ -350,11 +350,24 @@ class SaleorClient:
         raise Exception(f"Token refresh failed: {data.get('errors')}")
 
     def _execute_authed(self, query: str, variables: dict = None) -> dict:
-        """Execute with auto token refresh"""
+        """Execute with auto token refresh."""
+        # If we have no token at all, log in first (avoids sending Bearer None).
+        if not self.api_token:
+            self._get_fresh_token()
         try:
             return self._execute(query, variables)
         except Exception as e:
-            if "Signature verification failed" in str(e) or "expired" in str(e).lower():
+            msg = str(e).lower()
+            # Permission errors with no/expired/bogus token → try refreshing once.
+            if any(t in msg for t in (
+                "signature verification failed",
+                "expired",
+                "permissiondenied",
+                "permission denied",
+                "you need one of the following permissions",
+                "invalid signature",
+                "401",
+            )):
                 self._get_fresh_token()
                 return self._execute(query, variables)
             raise
