@@ -10,8 +10,14 @@ import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import io
+import hashlib
+import threading
 from functools import wraps
-from flask import Flask, render_template, jsonify, request, Response
+from urllib.parse import urlparse, unquote
+import requests as _http_requests
+from PIL import Image
+from flask import Flask, render_template, jsonify, request, Response, abort
 from flask_cors import CORS
 from core.generation_tracker import GenerationTracker
 from core.prompt_manager import PromptManager
@@ -48,6 +54,97 @@ def _require_basic_auth():
 @app.route('/healthz')
 def _healthz():
     return ('ok', 200)
+
+
+# Image proxy: fetch remote → resize → WebP → in-memory LRU cache.
+# Cuts 10 MB 4K PNGs down to ~150 KB WebP. Browser sees one short, edge-cacheable response.
+_ALLOWED_IMAGE_HOSTS = (
+    "saleorme.s3.us-east-1.amazonaws.com",
+    "saleorme.s3.amazonaws.com",
+    "cdn.fashn.ai",
+)
+_IMG_CACHE_MAX = 256
+_img_cache: dict[str, tuple[bytes, str]] = {}
+_img_cache_order: list[str] = []
+_img_cache_lock = threading.Lock()
+
+
+def _img_cache_get(key: str):
+    with _img_cache_lock:
+        if key not in _img_cache:
+            return None
+        _img_cache_order.remove(key)
+        _img_cache_order.append(key)
+        return _img_cache[key]
+
+
+def _img_cache_set(key: str, body: bytes, mime: str):
+    with _img_cache_lock:
+        if key in _img_cache:
+            _img_cache_order.remove(key)
+        _img_cache[key] = (body, mime)
+        _img_cache_order.append(key)
+        while len(_img_cache_order) > _IMG_CACHE_MAX:
+            evict = _img_cache_order.pop(0)
+            _img_cache.pop(evict, None)
+
+
+@app.route('/img')
+def img_proxy():
+    raw_url = request.args.get('url', '')
+    if not raw_url:
+        abort(400, "missing url")
+    url = unquote(raw_url)
+    host = urlparse(url).hostname or ''
+    if not (host in _ALLOWED_IMAGE_HOSTS
+            or host.endswith('.r2.dev')
+            or host.endswith('.amazonaws.com')):
+        abort(403, f"host not allowed: {host}")
+
+    try:
+        width = int(request.args.get('w', '1080'))
+    except ValueError:
+        width = 1080
+    width = max(64, min(width, 2400))
+    quality = max(40, min(int(request.args.get('q', '80') or 80), 95))
+
+    cache_key = hashlib.sha1(f"{url}|{width}|{quality}".encode()).hexdigest()
+    hit = _img_cache_get(cache_key)
+    if hit is not None:
+        body, mime = hit
+        resp = Response(body, mimetype=mime)
+        resp.headers['Cache-Control'] = 'public, max-age=86400'
+        resp.headers['X-Cache'] = 'HIT'
+        return resp
+
+    try:
+        r = _http_requests.get(url, timeout=20, stream=True)
+        r.raise_for_status()
+    except Exception as e:
+        abort(502, f"fetch failed: {e}")
+
+    try:
+        src = Image.open(io.BytesIO(r.content))
+        if src.mode in ('RGBA', 'LA'):
+            bg = Image.new('RGB', src.size, (255, 255, 255))
+            bg.paste(src, mask=src.split()[-1])
+            src = bg
+        elif src.mode != 'RGB':
+            src = src.convert('RGB')
+        if src.width > width:
+            new_h = int(src.height * (width / src.width))
+            src = src.resize((width, new_h), Image.LANCZOS)
+        out = io.BytesIO()
+        src.save(out, format='WEBP', quality=quality, method=6)
+        body = out.getvalue()
+    except Exception as e:
+        abort(500, f"transform failed: {e}")
+
+    _img_cache_set(cache_key, body, 'image/webp')
+    resp = Response(body, mimetype='image/webp')
+    resp.headers['Cache-Control'] = 'public, max-age=86400'
+    resp.headers['X-Cache'] = 'MISS'
+    return resp
 
 
 tracker = GenerationTracker()

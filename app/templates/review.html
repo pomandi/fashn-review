@@ -480,6 +480,22 @@
         let currentIndex = 0;
         let currentGeneration = null;
 
+        // Route remote image URLs through the in-app /img proxy (PIL resize → WebP).
+        // Falls back to the raw URL for unknown hosts or empty values.
+        function proxiedImg(url, width) {
+            if (!url) return '';
+            try {
+                const host = new URL(url).hostname;
+                const proxied = host.endsWith('amazonaws.com')
+                    || host.endsWith('.r2.dev')
+                    || host === 'cdn.fashn.ai';
+                if (!proxied) return url;
+                return '/img?w=' + (width || 1080) + '&url=' + encodeURIComponent(url);
+            } catch (e) {
+                return url;
+            }
+        }
+
         // Load pending generations
         async function loadPending() {
             try {
@@ -521,7 +537,7 @@
 
             container.innerHTML = pendingGenerations.map((gen, idx) => `
                 <div onclick="goToImage(${idx})" class="flex items-center gap-3 p-2 rounded-xl cursor-pointer transition ${idx === currentIndex ? 'bg-blue-500/20 border border-blue-500/30' : 'hover:bg-white/5'}">
-                    <img src="${gen.output.s3_url || gen.output.fashn_url}" class="w-12 h-12 rounded-lg object-cover">
+                    <img src="${proxiedImg(gen.output.s3_url || gen.output.fashn_url, 120)}" loading="lazy" class="w-12 h-12 rounded-lg object-cover">
                     <div class="flex-1 min-w-0">
                         <p class="font-medium text-sm truncate">${gen.source.name}</p>
                         <p class="text-xs text-gray-500">${gen.model_used || 'unknown'}</p>
@@ -573,9 +589,9 @@
 
             const generatedUrl = currentGeneration.output.s3_url || currentGeneration.output.fashn_url;
             const sourceUrl = currentGeneration.source.image_url;
-            document.getElementById('current-image').src = generatedUrl;
+            document.getElementById('current-image').src = proxiedImg(generatedUrl, 1080);
             document.getElementById('current-image-link').href = generatedUrl || '#';
-            document.getElementById('source-image').src = sourceUrl || '';
+            document.getElementById('source-image').src = sourceUrl ? proxiedImg(sourceUrl, 800) : '';
             document.getElementById('source-image-link').href = sourceUrl || '#';
             document.getElementById('source-name').textContent = currentGeneration.source.name;
             document.getElementById('source-type').textContent = currentGeneration.source.type.charAt(0).toUpperCase() + currentGeneration.source.type.slice(1);
