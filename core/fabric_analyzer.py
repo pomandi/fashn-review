@@ -4,6 +4,7 @@ Falls back to algorithmic analysis if AI fails.
 """
 
 import io
+import os
 import base64
 import json
 import colorsys
@@ -12,12 +13,10 @@ from PIL import Image
 from typing import Dict, Tuple
 from anthropic import Anthropic
 
-ANTHROPIC_AUTH_TOKEN = "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"
-
 
 def _get_client():
     return Anthropic(
-        auth_token=ANTHROPIC_AUTH_TOKEN,
+        auth_token=os.environ["ANTHROPIC_AUTH_TOKEN"],
         default_headers={"anthropic-beta": "oauth-2025-04-20"},
     )
 
