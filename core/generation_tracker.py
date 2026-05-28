@@ -1,9 +1,14 @@
 """
-Generation Tracker - Tracks all image generations, their status, and feedback
+Generation Tracker - Tracks all image generations, their status, and feedback.
+
+State persistence: local JSON file is the working copy. On startup we hydrate
+from R2 if the cloud copy is newer than the in-image seed (so the live state
+survives container restarts and redeploys). Every save writes back to R2.
 """
 
 import json
 import os
+import threading
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 from enum import Enum
@@ -11,6 +16,83 @@ import uuid
 
 
 GENERATIONS_FILE = os.path.join(os.path.dirname(__file__), '..', 'data', 'generations', 'generations.json')
+
+# R2 key where authoritative state lives. Set R2_STATE_DISABLED=1 to skip cloud sync.
+_R2_STATE_KEY = "fashn-review/state/generations.json"
+_state_lock = threading.Lock()
+
+
+def _r2_client_or_none():
+    if os.getenv("R2_STATE_DISABLED"):
+        return None
+    try:
+        import boto3
+        account_id = os.environ["R2_ACCOUNT_ID"]
+        return (boto3.client(
+            's3',
+            endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
+            aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
+            aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],
+            region_name='auto',
+        ), os.getenv("R2_BUCKET_NAME", "pomandi-media"))
+    except Exception as e:
+        print(f"[tracker] R2 unavailable: {e}")
+        return None
+
+
+def _hydrate_from_r2(local_path: str):
+    """If R2 has a newer state file than local seed, pull it down."""
+    cli = _r2_client_or_none()
+    if cli is None:
+        return
+    client, bucket = cli
+    try:
+        head = client.head_object(Bucket=bucket, Key=_R2_STATE_KEY)
+        remote_mtime = head["LastModified"].timestamp()
+    except Exception:
+        # No remote yet — nothing to hydrate. First save will create it.
+        print("[tracker] no remote state in R2 yet")
+        return
+
+    local_mtime = os.path.getmtime(local_path) if os.path.exists(local_path) else 0
+    if remote_mtime <= local_mtime:
+        print(f"[tracker] R2 state not newer ({remote_mtime} <= {local_mtime}), keeping local")
+        return
+
+    try:
+        obj = client.get_object(Bucket=bucket, Key=_R2_STATE_KEY)
+        body = obj["Body"].read()
+        # Validate JSON before writing
+        json.loads(body)
+        os.makedirs(os.path.dirname(local_path), exist_ok=True)
+        tmp = local_path + ".r2-hydrate"
+        with open(tmp, "wb") as f:
+            f.write(body)
+        os.replace(tmp, local_path)
+        os.utime(local_path, (remote_mtime, remote_mtime))
+        print(f"[tracker] hydrated {len(body)} bytes from R2")
+    except Exception as e:
+        print(f"[tracker] hydrate failed: {e}")
+
+
+def _push_to_r2(local_path: str):
+    """Push the local JSON state to R2. Best-effort, swallows errors."""
+    cli = _r2_client_or_none()
+    if cli is None:
+        return
+    client, bucket = cli
+    try:
+        with open(local_path, "rb") as f:
+            body = f.read()
+        client.put_object(
+            Bucket=bucket,
+            Key=_R2_STATE_KEY,
+            Body=body,
+            ContentType="application/json",
+            CacheControl="no-cache",
+        )
+    except Exception as e:
+        print(f"[tracker] R2 push failed: {e}")
 
 
 class GenerationStatus(Enum):
@@ -24,6 +106,9 @@ class GenerationStatus(Enum):
 class GenerationTracker:
     def __init__(self):
         self.generations_file = GENERATIONS_FILE
+        # Pull authoritative state from R2 (best-effort, before first load).
+        with _state_lock:
+            _hydrate_from_r2(self.generations_file)
         self.data = self._load_data()
 
     def _load_data(self) -> dict:
@@ -45,15 +130,18 @@ class GenerationTracker:
         }
 
     def _save_data(self):
-        """Save generations to JSON file atomically (write temp, then rename)."""
+        """Save generations to JSON file atomically, then push to R2."""
         self.data['last_updated'] = datetime.now().isoformat()
         self._update_statistics()
-        tmp = self.generations_file + '.tmp'
-        with open(tmp, 'w', encoding='utf-8') as f:
-            json.dump(self.data, f, indent=2, ensure_ascii=False)
-            f.flush()
-            os.fsync(f.fileno())
-        os.replace(tmp, self.generations_file)
+        with _state_lock:
+            tmp = self.generations_file + '.tmp'
+            with open(tmp, 'w', encoding='utf-8') as f:
+                json.dump(self.data, f, indent=2, ensure_ascii=False)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp, self.generations_file)
+        # Push to R2 in background — never block the request.
+        threading.Thread(target=_push_to_r2, args=(self.generations_file,), daemon=True).start()
 
     def _update_statistics(self):
         """Update statistics based on current generations"""

@@ -37,11 +37,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -77,11 +77,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/All-Suits_20251211_075804.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T08:13:20.389933",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T08:13:20.389933"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -118,11 +118,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/beige-suit_20251211_075957.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T17:13:44.201895",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2026-03-26T17:13:44.201895"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -159,11 +159,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/belts_20251211_080139.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T17:13:58.747360",
         "approved": false,
-        "rejection_reason": "Quality not acceptable",
+        "notes": "",
         "rating": null,
-        "notes": ""
+        "rejection_reason": "Quality not acceptable",
+        "reviewed_at": "2026-03-26T17:13:58.747360"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -200,11 +200,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/black-suit_20251211_080316.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T17:14:05.222370",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2026-03-26T17:14:05.222370"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -241,11 +241,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/blue-suit_20251211_080512.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T17:14:12.430652",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2026-03-26T17:14:12.430652"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -282,11 +282,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -322,11 +322,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/tuxedo_20251211_080918.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T08:18:31.463803",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T08:18:31.463803"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -363,11 +363,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/blue-suit_20251211_081108.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T08:23:05.623630",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T08:23:05.623630"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -404,11 +404,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/All-Suits_20251211_093556.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:33:06.048377",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:33:06.048377"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -445,11 +445,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -485,11 +485,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/All-Suits_20251211_093609.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:33:02.881917",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:33:02.881917"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -526,11 +526,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/beige-suit_20251211_093620.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:32:58.402890",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:32:58.402890"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -567,11 +567,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/black-suit_20251211_093632.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:32:55.263227",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:32:55.263227"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -608,11 +608,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T17:14:19.766355",
         "approved": false,
-        "rejection_reason": "Quality not acceptable",
+        "notes": "",
         "rating": null,
-        "notes": ""
+        "rejection_reason": "Quality not acceptable",
+        "reviewed_at": "2026-03-26T17:14:19.766355"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -649,11 +649,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/burgundy-suit_20251211_093644.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:32:51.696502",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:32:51.696502"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -690,11 +690,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/das_20251211_093654.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:32:49.415856",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:32:49.415856"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -731,11 +731,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/gray-wedding-suit_20251211_093706.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:32:44.617551",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:32:44.617551"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -772,11 +772,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/approved/green-suit_20251211_093718.png"
       },
       "feedback": {
-        "reviewed_at": "2025-12-11T09:32:41.810872",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2025-12-11T09:32:41.810872"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -813,11 +813,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -853,11 +853,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -893,11 +893,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -933,11 +933,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -973,11 +973,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1012,11 +1012,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_20260326_171827.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T20:02:33.198823",
         "approved": false,
-        "rejection_reason": "Quality not acceptable",
+        "notes": "",
         "rating": null,
-        "notes": ""
+        "rejection_reason": "Quality not acceptable",
+        "reviewed_at": "2026-03-26T20:02:33.198823"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1051,11 +1051,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1090,11 +1090,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_slim-2pc_20260326_173146.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T19:31:48.154444",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2026-03-26T19:31:48.154444"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1129,11 +1129,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_slim-2pc_20260326_184222.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1168,11 +1168,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1206,11 +1206,11 @@
         "s3_url": null
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1244,11 +1244,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2505_slim-2pc_20260326_193259.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T19:33:10.686558",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "Auto Saleor test",
         "rating": 5,
-        "notes": "Auto Saleor test"
+        "rejection_reason": null,
+        "reviewed_at": "2026-03-26T19:33:10.686558"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1283,11 +1283,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528_slim-2pc_20260326_193621.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1322,11 +1322,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2529_slim-3pc_20260326_193804.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1361,11 +1361,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528_slim-2pc_20260326_194058.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T20:03:54.039395",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2026-03-26T20:03:54.039395"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1400,11 +1400,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528-v2_slim-2pc_20260326_194304.png"
       },
       "feedback": {
-        "reviewed_at": "2026-03-26T20:04:07.302993",
         "approved": true,
-        "rejection_reason": null,
+        "notes": "",
         "rating": 5,
-        "notes": ""
+        "rejection_reason": null,
+        "reviewed_at": "2026-03-26T20:04:07.302993"
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1556,11 +1556,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2528-clean_slim-2pc_20260326_200951.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1595,11 +1595,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2504_slim-2pc_20260327_060835.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1637,11 +1637,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2524_imagen_slim-3pc_20260327_064941.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1679,11 +1679,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2524_imagen_slim-3pc_20260327_065106.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1721,11 +1721,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2523_imagen_slim-3pc_20260327_065144.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1763,11 +1763,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2577_lifestyle_classic-studio_1_20260327_075000.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1847,11 +1847,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2519_lifestyle_classic-studio_1_20260327_090213.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -1931,11 +1931,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2501_imagen_slim-3pc_20260327_092436.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2015,11 +2015,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/V2535_lifestyle_classic-studio_1_20260327_092906.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2138,11 +2138,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_blauw-pak-urununun-kopyasi-1_business-office_20260509_090005.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2179,11 +2179,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_beige-pak-heren-2-b45a0df0_evening-gala_20260509_090112.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2220,11 +2220,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_bordeaux-kostuum-heren-aubergi_hotel-lobby_20260509_090208.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
@@ -2343,11 +2343,11 @@
         "s3_url": "https://saleorme.s3.us-east-1.amazonaws.com/fashn-api/new-collection-images/AD_bordeaux-geruit-bruidegom-pak_vintage-car_20260509_090511.png"
       },
       "feedback": {
-        "reviewed_at": null,
         "approved": null,
-        "rejection_reason": null,
+        "notes": null,
         "rating": null,
-        "notes": null
+        "rejection_reason": null,
+        "reviewed_at": null
       },
       "regeneration": {
         "is_regeneration": false,
