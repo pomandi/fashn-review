@@ -252,6 +252,24 @@ def approve(generation_id):
             except Exception as e:
                 saleor_error = str(e)
 
+    elif source_type == 'product':
+        # ── PRODUCT APPROVE: Append AI image to existing Saleor product (don't create new) ──
+        saleor_id = gen['source'].get('saleor_id')
+        if saleor_id and image_url:
+            try:
+                print(f"[approve] Adding image to Saleor product {saleor_id}: {image_url[:80]}")
+                saleor_update_result = saleor_client.add_product_image(
+                    product_id=saleor_id,
+                    image_url=image_url,
+                    alt_text=f"AI generated — {gen['source'].get('name','')}"
+                )
+                print(f"[approve] Saleor image added: {saleor_update_result}")
+            except Exception as e:
+                saleor_error = str(e)
+                print(f"[approve] Saleor product image error: {e}")
+        else:
+            print(f"[approve] Skipped Saleor update — saleor_id={saleor_id} image_url={bool(image_url)}")
+
     # Record in prompt stats
     prompt_manager.record_generation(gen['prompt']['id'], approved=True)
 

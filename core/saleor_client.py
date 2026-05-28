@@ -546,6 +546,21 @@ class SaleorClient:
         except Exception as e:
             print(f"  [saleor] Image upload warning: {e}")
 
+    def add_product_image(self, product_id: str, image_url: str, alt_text: str = "") -> dict:
+        """Append an image to an existing Saleor product. Returns {media_id} or raises."""
+        result = self._execute_authed("""
+            mutation ($product: ID!, $mediaUrl: String!, $alt: String) {
+                productMediaCreate(input: {product: $product, mediaUrl: $mediaUrl, alt: $alt}) {
+                    media { id }
+                    errors { field message code }
+                }
+            }
+        """, {"product": product_id, "mediaUrl": image_url, "alt": alt_text})
+        data = result.get("productMediaCreate", {})
+        if data.get("errors"):
+            raise Exception(f"productMediaCreate failed: {data['errors']}")
+        return {"media_id": (data.get("media") or {}).get("id"), "product_id": product_id}
+
 
 if __name__ == "__main__":
     # Test connection
