@@ -725,7 +725,7 @@ def factory_pending():
                    saleor_slug, landing_url, status, created_at
             FROM creative_experiments
             WHERE (review->>'approved') = 'true'
-              AND status IN ('published','live','scaling','winner')
+              AND status IN ('draft','published','live','scaling','winner')
               AND override_reason IS NULL
             ORDER BY created_at DESC LIMIT 200
         """)
