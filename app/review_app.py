@@ -721,8 +721,8 @@ def factory_pending():
     with _factory_db() as c, c.cursor(cursor_factory=_pg_extras.RealDictCursor) as cur:
         cur.execute("""
             SELECT experiment_key, fabric_code, fabric_book, concept, background,
-                   image_r2_url, quality_score, review, saleor_product_id,
-                   saleor_slug, landing_url, status, created_at
+                   image_r2_url, swatch_r2_key, quality_score, review,
+                   saleor_product_id, saleor_slug, landing_url, status, created_at
             FROM creative_experiments
             WHERE (review->>'approved') = 'true'
               AND status IN ('draft','published','live','scaling','winner')
@@ -730,9 +730,41 @@ def factory_pending():
             ORDER BY created_at DESC LIMIT 200
         """)
         rows = cur.fetchall()
+    r2_base = os.getenv("R2_PUBLIC_URL", "https://pub-1de25a6a3db9483aa103360222346a62.r2.dev").rstrip("/")
     for r in rows:
         r["created_at"] = r["created_at"].isoformat() if r.get("created_at") else None
+        sk = r.pop("swatch_r2_key", None)
+        r["swatch_url"] = f"{r2_base}/{sk.lstrip('/')}" if sk else None
     return jsonify({"count": len(rows), "items": rows})
+
+
+# thumbnail proxy: fetch an R2 image, resize, cache — keeps /factory fast
+_THUMB_CACHE = {}
+
+
+@app.route('/api/thumb')
+def factory_thumb():
+    url = request.args.get('u')
+    width = min(int(request.args.get('w', 400)), 1000)
+    if not url:
+        abort(400)
+    key = f"{url}@{width}"
+    data = _THUMB_CACHE.get(key)
+    if data is None:
+        try:
+            resp = _http_requests.get(url, timeout=25)
+            resp.raise_for_status()
+            im = Image.open(io.BytesIO(resp.content)).convert("RGB")
+            im.thumbnail((width, width * 2))
+            buf = io.BytesIO()
+            im.save(buf, "JPEG", quality=80, optimize=True)
+            data = buf.getvalue()
+            if len(_THUMB_CACHE) < 500:   # simple cap
+                _THUMB_CACHE[key] = data
+        except Exception as e:
+            return jsonify({"error": str(e)}), 502
+    return Response(data, mimetype="image/jpeg",
+                    headers={"Cache-Control": "public, max-age=86400"})
 
 
 @app.route('/api/factory-reject/<path:experiment_key>', methods=['POST'])

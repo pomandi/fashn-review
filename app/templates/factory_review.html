@@ -56,15 +56,29 @@
           .map(k => `<span class="score rounded px-1.5 py-0.5 text-[11px]">${k.replace('_',' ')}: ${sc[k] ?? '-'}</span>`).join(' ');
         const card = document.createElement('div');
         card.className = 'glass rounded-xl overflow-hidden flex flex-col';
+        const thumb = (u, w) => `/api/thumb?u=${encodeURIComponent(u)}&w=${w}`;
+        const swatch = it.swatch_url
+          ? `<a href="${it.swatch_url}" target="_blank" title="Kumaş swatch — ${it.fabric_book || ''}" class="shrink-0">
+               <img src="${thumb(it.swatch_url, 120)}" loading="lazy"
+                    class="w-14 h-14 rounded-lg object-cover border border-white/15" />
+             </a>` : '';
         card.innerHTML = `
           <div class="relative">
-            <img src="${it.image_r2_url}" class="w-full aspect-[3/4] object-cover" loading="lazy" />
+            <a href="${it.image_r2_url}" target="_blank">
+              <img src="${thumb(it.image_r2_url, 440)}" class="w-full aspect-[3/4] object-cover" loading="lazy" />
+            </a>
             <span class="badge absolute top-2 left-2 text-[11px] px-2 py-0.5 rounded-full">✓ AI onayladı ${rev.composite ?? ''}</span>
             <span class="absolute top-2 right-2 text-[11px] px-2 py-0.5 rounded-full bg-black/50">${it.status}</span>
           </div>
           <div class="p-3 flex-1 flex flex-col gap-2">
-            <div class="text-sm font-medium">${it.fabric_code} · ${it.concept}</div>
-            <div class="text-[11px] text-white/40">${it.fabric_book || ''}</div>
+            <div class="flex items-center gap-2">
+              ${swatch}
+              <div class="min-w-0">
+                <div class="text-sm font-medium truncate">${it.fabric_code} · ${it.concept}</div>
+                <div class="text-[11px] text-white/40 truncate">${it.fabric_book || ''}</div>
+                ${swatch ? '<div class="text-[10px] text-white/35">↑ kumaş — takıma benziyor mu?</div>' : ''}
+              </div>
+            </div>
             <div class="flex flex-wrap gap-1">${scores}</div>
             ${rev.reason ? `<div class="text-[11px] text-white/45 italic">"${rev.reason}"</div>` : ''}
             <div class="mt-auto flex gap-2 pt-2">
