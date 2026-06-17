@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTM Factory — AI-Approved Review</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background:#0b0d12; color:#e8eaed; font-family:ui-sans-serif,system-ui,sans-serif; }
+    .glass { background:rgba(255,255,255,.05); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); }
+    .badge { background:rgba(34,197,94,.15); color:#4ade80; border:1px solid rgba(34,197,94,.3); }
+    .score { background:rgba(255,255,255,.06); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 py-6">
+    <header class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-2xl font-semibold">MTM Factory — AI-Approved</h1>
+        <p class="text-sm text-white/50">Claude reviewer bunları onayladı. Beğenmezsen reject et →
+          siteden kalkar, reklam durur, yeniden üretilir, ve agent bunu öğrenir.</p>
+      </div>
+      <div id="count" class="text-sm text-white/60"></div>
+    </header>
+
+    <!-- steer the agent -->
+    <div class="glass rounded-xl p-4 mb-6">
+      <label class="text-sm text-white/70">Agent'a genel ders ver (reject etmeden):</label>
+      <div class="flex gap-2 mt-2">
+        <input id="lesson" type="text" placeholder="ör. modelin gözleri şaşı olmasın, eller hep görünür olsun"
+               class="flex-1 bg-black/30 rounded-lg px-3 py-2 text-sm outline-none border border-white/10" />
+        <button onclick="addLesson()" class="px-4 py-2 rounded-lg glass hover:bg-white/10 text-sm">Kaydet</button>
+      </div>
+      <p id="lesson-msg" class="text-xs text-emerald-400 mt-1"></p>
+    </div>
+
+    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+    <div id="empty" class="hidden text-center text-white/40 py-20">Onay bekleyen AI-onaylı ürün yok.</div>
+  </div>
+
+  <script>
+    async function load() {
+      const r = await fetch('/api/factory-pending');
+      const d = await r.json();
+      document.getElementById('count').textContent = d.count + ' ürün';
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      document.getElementById('empty').classList.toggle('hidden', d.count > 0);
+      for (const it of d.items) {
+        const rev = it.review || {};
+        const sc = rev.scores || {};
+        const scores = ['realism','suit_correct','fabric_match','no_artifacts']
+          .map(k => `<span class="score rounded px-1.5 py-0.5 text-[11px]">${k.replace('_',' ')}: ${sc[k] ?? '-'}</span>`).join(' ');
+        const card = document.createElement('div');
+        card.className = 'glass rounded-xl overflow-hidden flex flex-col';
+        card.innerHTML = `
+          <div class="relative">
+            <img src="${it.image_r2_url}" class="w-full aspect-[3/4] object-cover" loading="lazy" />
+            <span class="badge absolute top-2 left-2 text-[11px] px-2 py-0.5 rounded-full">✓ AI onayladı ${rev.composite ?? ''}</span>
+            <span class="absolute top-2 right-2 text-[11px] px-2 py-0.5 rounded-full bg-black/50">${it.status}</span>
+          </div>
+          <div class="p-3 flex-1 flex flex-col gap-2">
+            <div class="text-sm font-medium">${it.fabric_code} · ${it.concept}</div>
+            <div class="text-[11px] text-white/40">${it.fabric_book || ''}</div>
+            <div class="flex flex-wrap gap-1">${scores}</div>
+            ${rev.reason ? `<div class="text-[11px] text-white/45 italic">"${rev.reason}"</div>` : ''}
+            <div class="mt-auto flex gap-2 pt-2">
+              ${it.landing_url ? `<a href="${it.landing_url}" target="_blank" class="text-[12px] text-sky-400 hover:underline">Landing ↗</a>` : ''}
+              <button class="ml-auto px-3 py-1.5 rounded-lg bg-red-500/15 text-red-300 border border-red-500/30 hover:bg-red-500/25 text-[12px]"
+                      onclick='reject(${JSON.stringify(it.experiment_key)})'>Reject + öğret</button>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      }
+    }
+
+    async function reject(key) {
+      const reason = prompt('Neden reddediyorsun? (agent bunu öğrenecek)\nör. "adamın gözleri amuk", "kumaş rengi yanlış"');
+      if (!reason) return;
+      const r = await fetch('/api/factory-reject/' + encodeURIComponent(key), {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ reason })
+      });
+      const d = await r.json();
+      if (d.status === 'overridden') {
+        alert('Reddedildi ✓\n• Siteden kaldırıldı: ' + (d.saleor_unpublished ? 'evet' : 'hayır')
+              + '\n• Reklam duracak + yeniden üretilecek\n• Agent bu dersi öğrendi');
+        load();
+      } else {
+        alert('Hata: ' + (d.error || d.saleor_error || 'bilinmiyor'));
+      }
+    }
+
+    async function addLesson() {
+      const el = document.getElementById('lesson');
+      const lesson = el.value.trim();
+      if (!lesson) return;
+      const r = await fetch('/api/factory-learning', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ lesson, severity: 'warn' })
+      });
+      if (r.ok) { document.getElementById('lesson-msg').textContent = 'Kaydedildi ✓ — reviewer bundan sonra uygulayacak'; el.value = ''; }
+    }
+
+    load();
+    setInterval(load, 30000);
+  </script>
+</body>
+</html>

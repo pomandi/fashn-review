@@ -545,6 +545,25 @@ class SaleorClient:
         print(f"  [saleor] DONE - {total_imgs} images, live on all channels!")
         return {"product_id": product_id, "collection_id": collection_id, "variant_id": variant_id}
 
+    def unpublish_product(self, product_id: str) -> dict:
+        """Hide a product from the storefront on all channels (revert to draft).
+        Used when an operator overrides an AI-approved product in the review app."""
+        result = self._execute_authed("""
+            mutation ($id: ID!, $input: ProductChannelListingUpdateInput!) {
+                productChannelListingUpdate(id: $id, input: $input) {
+                    product { id }
+                    errors { field message }
+                }
+            }
+        """, {"id": product_id, "input": {
+            "updateChannels": [
+                {"channelId": ch["id"], "isPublished": False,
+                 "visibleInListings": False, "isAvailableForPurchase": False}
+                for ch in self.CHANNELS
+            ]
+        }})
+        return result.get("productChannelListingUpdate", {})
+
     def _upload_product_image(self, product_id: str, image_url: str, alt_text: str):
         """Upload image to product via mediaUrl"""
         try:

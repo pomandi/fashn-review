@@ -676,6 +676,123 @@ def imagen_generate():
         return jsonify({"error": str(e)}), 500
 
 
+# ============================================================
+# MTM CREATIVE FACTORY INTEGRATION
+# Shows AI-approved factory products from the shared postgres ledger.
+# Operator can reject retroactively -> unpublish + teach the reviewer.
+# ============================================================
+import json as _json
+from contextlib import contextmanager as _contextmanager
+
+import psycopg2 as _pg
+import psycopg2.extras as _pg_extras
+
+_FACTORY_PG = {
+    "host": os.getenv("PGHOST", "91.98.235.81"),
+    "port": int(os.getenv("PGPORT", "5433")),
+    "dbname": os.getenv("PGDATABASE", "postgres"),
+    "user": os.getenv("PGUSER", "postgres"),
+    "password": os.getenv("PGPASSWORD", ""),
+}
+
+
+@_contextmanager
+def _factory_db():
+    conn = _pg.connect(connect_timeout=8, **_FACTORY_PG)
+    try:
+        yield conn
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+
+
+@app.route('/factory')
+def factory_review():
+    """Review interface for AI-approved MTM factory products."""
+    return render_template('factory_review.html')
+
+
+@app.route('/api/factory-pending')
+def factory_pending():
+    """AI-approved factory experiments that are live/published and not yet overridden."""
+    with _factory_db() as c, c.cursor(cursor_factory=_pg_extras.RealDictCursor) as cur:
+        cur.execute("""
+            SELECT experiment_key, fabric_code, fabric_book, concept, background,
+                   image_r2_url, quality_score, review, saleor_product_id,
+                   saleor_slug, landing_url, status, created_at
+            FROM creative_experiments
+            WHERE (review->>'approved') = 'true'
+              AND status IN ('published','live','scaling','winner')
+              AND override_reason IS NULL
+            ORDER BY created_at DESC LIMIT 200
+        """)
+        rows = cur.fetchall()
+    for r in rows:
+        r["created_at"] = r["created_at"].isoformat() if r.get("created_at") else None
+    return jsonify({"count": len(rows), "items": rows})
+
+
+@app.route('/api/factory-reject/<path:experiment_key>', methods=['POST'])
+def factory_reject(experiment_key):
+    """Operator overrides an AI-approved product:
+    1) mark experiment overridden (factory will stop ad + regenerate)
+    2) save the reason as a reviewer learning (teaches the agent)
+    3) unpublish the Saleor product (hide from storefront)."""
+    data = request.json or {}
+    reason = (data.get('reason') or 'operator rejected').strip()
+
+    saleor_unpublished = False
+    saleor_error = None
+    with _factory_db() as c, c.cursor() as cur:
+        cur.execute("SELECT saleor_product_id FROM creative_experiments "
+                    "WHERE experiment_key=%s", (experiment_key,))
+        row = cur.fetchone()
+        if not row:
+            return jsonify({"error": "experiment not found"}), 404
+        product_id = row[0]
+
+        cur.execute("""UPDATE creative_experiments
+            SET status='overridden', override_reason=%s, override_at=now(),
+                updated_at=now(),
+                decision_log = decision_log || %s::jsonb
+            WHERE experiment_key=%s""",
+            (reason, _json.dumps([{"action": "operator_override", "reason": reason}]),
+             experiment_key))
+
+        cur.execute("""INSERT INTO reviewer_learnings (lesson, severity, source)
+            VALUES (%s, 'critical', %s)""", (reason, experiment_key))
+
+    if product_id:
+        try:
+            saleor_client.unpublish_product(product_id)
+            saleor_unpublished = True
+        except Exception as e:
+            saleor_error = str(e)
+
+    return jsonify({"status": "overridden", "experiment_key": experiment_key,
+                    "saleor_unpublished": saleor_unpublished,
+                    "saleor_error": saleor_error,
+                    "note": "ad will stop and the image will be regenerated; "
+                            "the reviewer learned this lesson"})
+
+
+@app.route('/api/factory-learning', methods=['POST'])
+def factory_learning():
+    """Add a free-form steering lesson for the reviewer without rejecting anything."""
+    data = request.json or {}
+    lesson = (data.get('lesson') or '').strip()
+    if not lesson:
+        return jsonify({"error": "lesson required"}), 400
+    with _factory_db() as c, c.cursor() as cur:
+        cur.execute("INSERT INTO reviewer_learnings (lesson, severity, source) "
+                    "VALUES (%s, %s, 'operator')",
+                    (lesson, data.get('severity', 'info')))
+    return jsonify({"status": "added", "lesson": lesson})
+
+
 if __name__ == '__main__':
     print("=" * 60)
     print("FASHN Image Review App")
