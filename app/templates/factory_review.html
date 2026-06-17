@@ -26,6 +26,11 @@
       <div id="count" class="text-sm text-white/60"></div>
     </header>
 
+    <!-- cost / credit usage -->
+    <div id="costs" class="glass rounded-xl p-4 mb-6 flex flex-wrap items-center gap-6 text-sm">
+      <span class="text-white/40">Yükleniyor…</span>
+    </div>
+
     <!-- steer the agent -->
     <div class="glass rounded-xl p-4 mb-6">
       <label class="text-sm text-white/70">Agent'a genel ders ver (reject etmeden):</label>
@@ -119,8 +124,29 @@
       if (r.ok) { document.getElementById('lesson-msg').textContent = 'Kaydedildi ✓ — reviewer bundan sonra uygulayacak'; el.value = ''; }
     }
 
+    async function loadCosts() {
+      try {
+        const d = await (await fetch('/api/factory-costs')).json();
+        const p = d.by_period || {}, k = d.by_kind || {};
+        const kindLabel = {vertex_image: 'Vertex görsel', claude_review: 'Claude review', gemini_review: 'Gemini review'};
+        const kinds = Object.keys(k).map(x =>
+          `<span class="text-white/50">${kindLabel[x]||x}: <b class="text-white/80">$${k[x].cost}</b> <span class="text-white/30">(${k[x].count})</span></span>`
+        ).join(' · ');
+        document.getElementById('costs').innerHTML = `
+          <span class="text-white/40 uppercase text-xs tracking-wide">Harcama</span>
+          <span>Bugün <b class="text-emerald-300">$${p.today ?? 0}</b></span>
+          <span>Bu hafta <b class="text-emerald-300">$${p.week ?? 0}</b></span>
+          <span>Bu ay <b class="text-amber-300">$${p.month ?? 0}</b></span>
+          <span class="text-white/30">Toplam $${p.all ?? 0}</span>
+          ${kinds ? `<span class="text-white/30">|</span> ${kinds}` : ''}
+          <span class="ml-auto text-[11px] text-white/30">Vertex = gerçek Google Cloud · Claude = Max plan kullanımı</span>`;
+      } catch (e) { document.getElementById('costs').innerHTML = '<span class="text-red-300/70 text-xs">maliyet yüklenemedi</span>'; }
+    }
+
     load();
+    loadCosts();
     setInterval(load, 30000);
+    setInterval(loadCosts, 60000);
   </script>
 </body>
 </html>

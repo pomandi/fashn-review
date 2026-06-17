@@ -767,6 +767,33 @@ def factory_thumb():
                     headers={"Cache-Control": "public, max-age=86400"})
 
 
+@app.route('/api/factory-costs')
+def factory_costs():
+    """Vertex/Claude spend totals (today / 7d / month-to-date / all) + by kind."""
+    periods = {
+        "today": "ts::date = (now() at time zone 'utc')::date",
+        "week": "ts >= now() - interval '7 days'",
+        "month": "date_trunc('month', ts) = date_trunc('month', now())",
+        "all": "true",
+    }
+    out = {"by_period": {}, "counts": {}, "by_kind": {}}
+    try:
+        with _factory_db() as c, c.cursor() as cur:
+            for label, where in periods.items():
+                cur.execute(f"SELECT COALESCE(SUM(cost_usd),0), COUNT(*) "
+                            f"FROM cost_events WHERE {where}")
+                total, cnt = cur.fetchone()
+                out["by_period"][label] = round(float(total), 2)
+                out["counts"][label] = int(cnt)
+            cur.execute("SELECT kind, COALESCE(SUM(cost_usd),0), COUNT(*) FROM cost_events "
+                        "WHERE date_trunc('month', ts)=date_trunc('month', now()) GROUP BY kind")
+            for kind, total, cnt in cur.fetchall():
+                out["by_kind"][kind] = {"cost": round(float(total), 2), "count": int(cnt)}
+    except Exception as e:
+        out["error"] = str(e)
+    return jsonify(out)
+
+
 @app.route('/api/factory-reject/<path:experiment_key>', methods=['POST'])
 def factory_reject(experiment_key):
     """Operator overrides an AI-approved product:
